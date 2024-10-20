@@ -16,9 +16,8 @@ class BaseUserModel(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(self ,email, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         return self._create_user(email, password, **extra_fields)
-
 
     def create_superuser(self, email, password=None, **extra_fields):
         user = self._create_user(email, password, **extra_fields)
@@ -40,9 +39,9 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     full_name = models.CharField(_('Full Name'), max_length=255)
     birth_date = models.DateField(_('Birthday'), null=True, blank=True)
-    phone_number = models.CharField(_('Phone') ,max_length=255)
+    phone_number = models.CharField(_('Phone'), max_length=255)
     registration_date = models.DateField(_('Date Register'), auto_now_add=True)
-    last_login = models.DateField(_('Last Access') ,auto_now_add=True)
+    last_login = models.DateField(_('Last Access'), auto_now_add=True)
     is_active = models.BooleanField(_('Active'), default=True)
     is_staff = models.BooleanField(_('Staff'), default=False)
     is_superuser = models.BooleanField(_('Admin'), default=False)
@@ -60,12 +59,28 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.full_name
 
+
 class CurriculumModel(models.Model):
+    level_education = {
+        'Incompleto': 'Incompleto',
+        'Completo': 'Completo',
+        'Cursando': 'Cursando'
+    }
+
+    type_education = {
+        'Fundamental': 'Fundamental',
+        'Médio': 'Medio',
+        'Superior': 'Superior',
+        'Pós Graduação': 'Pós Graduação',
+        'Metrado': 'Metrado',
+        'Doutorado': 'Doutorado'
+    }
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='user')
-    about = models.TextField(default='')
-
-    REQUIRED_FIELDS = ['about']
+    about = models.TextField(blank=True)
+    education = models.CharField(_('Education'), max_length=50, choices=type_education, blank=True)
+    level = models.CharField(_('Level'), max_length=50, choices=level_education, blank=True)
 
     class Meta:
         ordering = ['user']
@@ -91,7 +106,6 @@ class ExperienceModel(models.Model):
         ordering = ['company']
         verbose_name = 'Experience'
         verbose_name_plural = 'Experiences'
-
 
     def __str__(self):
         return self.company
@@ -127,10 +141,12 @@ class LanguageModel(models.Model):
     def __str__(self):
         return self.name
 
+
 class CompanyModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name_company = models.CharField(_('Nome Company'), max_length=255)
     address = models.CharField(_('Address'), max_length=255)
+    district = models.CharField(_('District'), max_length=255)
     city = models.CharField(_('City'), max_length=255)
     state = models.CharField(_('State'), max_length=255)
     country = models.CharField(_('Country'), max_length=255)
@@ -147,7 +163,7 @@ class CompanyModel(models.Model):
 
 
 class JobModel(models.Model):
-    id = models.AutoField(primary_key=True, editable=False, unique=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     company = models.ForeignKey('CompanyModel', on_delete=models.CASCADE, related_name='company')
     title = models.CharField(_('Title'), max_length=255)
     id_job = models.CharField(_('ID Job'), max_length=255, default='')
@@ -164,11 +180,10 @@ class JobModel(models.Model):
     remuneration = models.DecimalField(_('Remuneration'), default=0, decimal_places=2, max_digits=10)
     count_applications = models.IntegerField(_('Applications Count'), default=0)
 
-
     REQUIRED_FIELDS = ['title', 'description', 'status', 'company']
 
     class Meta:
-        ordering = ['title', 'count_applications']
+        ordering = ['title', '-registration_date']
         verbose_name = 'Job'
         verbose_name_plural = 'Jobs'
 
@@ -177,10 +192,19 @@ class JobModel(models.Model):
 
 
 class ApplicationModel(models.Model):
+
+    status_application = {
+        'Confirmada' : 'Confirmada',
+        'Selecionada' : 'Selecionada',
+        'Não Selecionada' : 'Não Selecionada',
+        'Finalizada' : 'Finalizada',
+    }
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     job = models.ForeignKey('JobModel', on_delete=models.CASCADE, related_name='job_applications')
     curriculum = models.ForeignKey('CurriculumModel', on_delete=models.CASCADE, related_name='curriculum_applications')
     application_date = models.DateField(_('Application Date'), auto_now_add=True)
+    status = models.CharField(_('Status'), max_length=30, choices=status_application)
 
     class Meta:
         ordering = ['job', 'curriculum']

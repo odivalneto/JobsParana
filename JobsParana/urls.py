@@ -22,10 +22,6 @@ from core.views import JobListView, ProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('jobs/', JobListView.as_view(), name='jobs'),
-    path('my_profile/', views.profile, name='my_profile'),
-    path('profile/', ProfileView.as_view(), name='profile'),
-
+    path('', include('core.urls', namespace='core')),
 ]

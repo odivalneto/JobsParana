@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jobs Parana</title>
+    <title>Sine Paraná</title>
 
     {% compress css %}
         <link rel="stylesheet" href="{% static 'src/output.css' %}">
@@ -16,23 +16,20 @@
 
 <body class="bg-gray-50">
 
-{% if request.user.is_authenticated %}
-    {% include 'misc/navbar.html' %}
-{% endif %}
-
-<main class="my-16 md:my-10 px-4 pb-10 md:p-9 md:ml-64">
-
-    <div class="text-3xl font-bold py-4">
-        <span>{% block title %}{% endblock %}</span>  
-    </div>
-     
+<main class="p-4 mt-6">
     {% block content %}{% endblock content %}
-
 </main>
+{#FOOTER#}
+<div class="absolute bottom-0 w-full flex p-4">
+    <div class="flex items-center mx-auto">
+        <img src="{% static 'imgs/brasao_parana.svg' %}" class="h-10 me-3" alt="FlowBite Logo"/>
+        <div class="grid">
+            <span class="font-bold whitespace-nowrap dark:text-white">Paraná</span>
+            <span class="text-xs dark:text-white border-t-[1px] border-green-400">Governo do Estado</span>
+        </div>
+    </div>
+</div>
 
-{% if request.user.is_authenticated %}
-    {% include 'misc/bottom_navigation.html' %}
-{% endif %}
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 </body>

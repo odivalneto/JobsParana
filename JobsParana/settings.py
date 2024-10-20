@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'core.UserModel'
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/my_profile/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -122,7 +123,7 @@ USE_THOUSAND_SEPARATOR = True
 
 COMPRESS_ROOT = BASE_DIR / 'static'
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 
@@ -130,6 +131,7 @@ STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

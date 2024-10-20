@@ -44,7 +44,7 @@ class CurriculumForm(forms.ModelForm):
 
     class Meta:
         model = CurriculumModel
-        fields = ['about']
+        fields = ['about', 'education', 'level']
 
 
 class ApplicationForm(forms.ModelForm):

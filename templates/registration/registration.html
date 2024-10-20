@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
+{% extends '_login.html' %}
+{% load static %}
 
-    <form method="POST"> {% csrf_token %}
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+
         {{ form.as_p }}
-        <button type="submit">Save</button>
+    
+    <button type="submit">Salvar</button>
+
     </form>
 
-</body>
-</html>
+{% endblock %}
