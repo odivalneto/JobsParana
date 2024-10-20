@@ -4,7 +4,7 @@
 
 ## Descrição
 
-Sistema de cadastramento e divulgação de oportunidades de trabalhos para o estado do Paraná.
+Sistema de cadastramento e divulgação de vagas de trabalhos para o estado do Paraná.
 
 ## Status
 
