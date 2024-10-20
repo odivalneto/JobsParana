@@ -2,7 +2,7 @@
 
 set -e
 
-while ! nc -z "$POSTGRES_HOST" "$POSTGRES_PORT"; do
+while ! nc -z $POSTGRES_HOST $POSTGRES_PORT; do
   echo "Waiting Database Startup"
   sleep 5
 done

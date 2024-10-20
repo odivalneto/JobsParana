@@ -6,18 +6,17 @@ ENV PYTHONDONTWRITEBYTECODE 1
 
 ENV PYTHONUNBUFFERED 1
 
-COPY JobsParana /JobsParana
+COPY . /app
 COPY scripts /scripts
 
-RUN apk add nodejs
 RUN apk add npm
 
-WORKDIR /JobsParana
+WORKDIR /app
 EXPOSE 8000
 
 RUN python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
-  /venv/bin/pip install -r /JobsParana/requirements.txt && \
+  /venv/bin/pip install -r /app/requirements.txt && \
   adduser --disabled-password --no-create-home duser && \
   mkdir -p /data/web/static && \
   mkdir -p /data/web/media && \

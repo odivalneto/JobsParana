@@ -1,20 +1,20 @@
 services:
-  desafio:
-    container_name: Jobs_Parana
+  core:
+    container_name: main
     build:
       context: .
     ports:
       - 8000:8000
     volumes:
-      - ./JobsParana:/JobsParana
+      - ./JobsParana:/jobs
       - ./data/web/static:/data/web/static/
       - ./data/web/media:/data/web/media/
     env_file:
       - dotenv_files/.env
     depends_on:
-      - psql
-  psql:
-    container_name: psql
+      - database
+  database:
+    container_name: database
     image: postgres:13-alpine
     volumes:
       - ./data/postgres/data:/var/lib/postgresql/data/
