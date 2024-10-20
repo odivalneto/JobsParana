@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h3>List Jobs</h3>
+{% for job in jobs %}
+    
+    <p>{{ job.title }}</p>
+    <p>Código - {{ job.id_job }}</p>
+    {% if job.is_urgent %}Vaga Urgente{% endif %}
+    <p>{{ job.company.address }} / {{ job.company.city }} - {{ job.company.state }}</p>
+    <p>R$ {{ job.remuneration }}</p>
+    
+{% endfor %}
+
+</body>
+</html>
