@@ -12,6 +12,7 @@ def split_url(string, sep):
     return string.split(sep)
 
 
+# MARK: - PROFILE
 class UserRegistrationView(FormView):
     form_class = UserForm
     template_name = 'registration/registration.html'
@@ -42,6 +43,7 @@ class MyProfileView(LoginRequiredMixin, FormView):
             return form_class
 
 
+# MARK: - JOBS
 class JobListView(LoginRequiredMixin, ListView):
     model = JobModel
     context_object_name = 'jobs'
@@ -60,6 +62,7 @@ class JobDetailView(LoginRequiredMixin, DetailView):
     template_name = 'candidates/jobs/detail.html'
 
 
+# MARK: - CURRICULUM
 class MyCurriculumView(LoginRequiredMixin, TemplateView):
     template_name = 'candidates/profile/curriculum.html'
 
@@ -82,7 +85,7 @@ class MyCurriculumView(LoginRequiredMixin, TemplateView):
 
         return render(request, 'candidates/profile/curriculum.html', context={'curriculum': curriculum, 'form': form})
 
-
+# MARK: - APPLICATIONS
 class MyApplicationsView(LoginRequiredMixin, ListView):
     model = ApplicationModel
     context_object_name = 'applications'
@@ -92,6 +95,6 @@ class MyApplicationsView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return self.queryset.filter(is_active=True).order_by('-application_date')
 
-
+# MARK: - ACCOUNTS
 def login(request):
     return render(request, 'registration/login.html')

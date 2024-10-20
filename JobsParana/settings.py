@@ -11,16 +11,18 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR.parent / 'data' / 'web'
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g%r*ogcqsb8+a59okphicp_p_&b=t2corv1m2z0$91juv619sw'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-g%r*ogcqsb8+a59okphicp_p_&b=t2corv1m2z0$91juv619sw')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -29,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'core.UserModel'
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/my_profile/'
+LOGIN_REDIRECT_URL = ''
 LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
@@ -83,8 +85,12 @@ WSGI_APPLICATION = 'JobsParana.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE', 'ENGINE'),
+        'NAME': os.getenv('POSTGRES_DB', 'NAME'),
+        'USER': os.getenv('POSTGRES_USER', 'USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST', 'HOST'),
+        'PORT': os.getenv('POSTGRES_PORT', 'PORT'),
     }
 }
 

@@ -12,7 +12,7 @@ COPY scripts /scripts
 RUN apk add nodejs
 RUN apk add npm
 
-WORKDIR /DesafioApp
+WORKDIR /JobsParana
 EXPOSE 8000
 
 RUN python -m venv /venv && \
