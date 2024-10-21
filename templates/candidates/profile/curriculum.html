@@ -2,15 +2,51 @@
 {% block title %} Meu Currículo {% endblock %}
 
 {% block content %}
+
+    <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
     
-    {{ curriculum.education.first }}
-    
-    <form method="post">
-        {% csrf_token %}
-        
-        
-        {{ form.as_p }}
-        <button type="submit">Enviar</button>
-    </form>
+        <div class="mx-auto max-w-2xl px-4 2xl:px-0">
+            
+            <div class="space-y-4 sm:space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800 mb-6 md:mb-8">
+                <dl class="sm:flex items-center justify-between gap-4">
+                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Nome Completo</dt>
+                    <dd class="font-medium text-gray-900 dark:text-white sm:text-end">{{ curriculum.user.full_name }}</dd>
+                </dl>
+                <dl class="sm:flex items-center justify-between gap-4">
+                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Aniversário</dt>
+                    <dd class="font-medium text-gray-900 dark:text-white sm:text-end">{{ curriculum.user.birth_date }}</dd>
+                </dl>
+                <dl class="sm:flex items-center justify-between gap-4">
+                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Name</dt>
+                    <dd class="font-medium text-gray-900 dark:text-white sm:text-end">Flowbite Studios LLC</dd>
+                </dl>
+                <dl class="sm:flex items-center justify-between gap-4">
+                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Address</dt>
+                    <dd class="font-medium text-gray-900 dark:text-white sm:text-end">34 Scott Street, San Francisco,
+                        California, USA
+                    </dd>
+                </dl>
+                <dl class="sm:flex items-center justify-between gap-4">
+                    <dt class="font-normal mb-1 sm:mb-0 text-gray-500 dark:text-gray-400">Phone</dt>
+                    <dd class="font-medium text-gray-900 dark:text-white sm:text-end">{{ curriculum.user.phone_number }}</dd>
+                </dl>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                
+                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sobre</label>
+                <textarea id="message" rows="4"
+                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          placeholder="Write your thoughts here..."></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+
+        </div>
+
+    </section>
+
+
 
 {% endblock %}

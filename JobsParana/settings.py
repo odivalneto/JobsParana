@@ -22,7 +22,7 @@ DATA_DIR = BASE_DIR.parent / 'data' / 'web'
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', '&@i#_#1y&@nh@c(da9&2$72e$%bgf7v6*0f_&aj4id(6bonlf0')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,13 +84,17 @@ WSGI_APPLICATION = 'JobsParana.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'ENGINE'),
-        'NAME': os.getenv('POSTGRES_DB', 'NAME'),
-        'USER': os.getenv('POSTGRES_USER', 'USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'PASSWORD'),
-        'HOST': os.getenv('POSTGRES_HOST', 'HOST'),
-        'PORT': os.getenv('POSTGRES_PORT', 'PORT'),
+    # 'default': {
+    #     'ENGINE': os.getenv('DB_ENGINE', 'ENGINE'),
+    #     'NAME': os.getenv('POSTGRES_DB', 'NAME'),
+    #     'USER': os.getenv('POSTGRES_USER', 'USER'),
+    #     'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'PASSWORD'),
+    #     'HOST': os.getenv('POSTGRES_HOST', 'HOST'),
+    #     'PORT': os.getenv('POSTGRES_PORT', 'PORT'),
+    # }
+'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
