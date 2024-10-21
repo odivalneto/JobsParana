@@ -4,7 +4,7 @@
 
 ## Descrição
 
-Sistema de cadastramento e divulgação de vagas de trabalhos para o estado do Paraná.
+Sistema de cadastramento e divulgação para vagas de trabalhos do estado do Paraná.
 
 ## Status
 
@@ -30,6 +30,7 @@ Sistema de cadastramento e divulgação de vagas de trabalhos para o estado do P
 - [ ] Atualização de Perfil
 - [ ] Listagem de Candidaturas
 - [ ] Landing Page
+- [ ] Api
 
 
 ## Funcionalidades Interna
@@ -61,13 +62,13 @@ Para rodar o projeto localmente, siga os passos abaixo:
 
 3. Renomeie ``.env-config`` para ``.env`` e confirgure as variáveis de ambiente.
 
-4. Execute o comando no terminal de sua escolha:
+4. Execute o seguinte comando em seu terminal:
    ```bash
    docker-compose -p jobsparana up -d
    
 ## Django Run
 
-1. Adicione uma **SECRET_KEY** nos ``settings.py``:
+1. Adicione uma **SECRET_KEY** em ``settings.py``:
    >https://djecrety.ir
 
 2. Altere a comunicação com o ``Database`` em ``settings.py``:
@@ -82,7 +83,7 @@ Para rodar o projeto localmente, siga os passos abaixo:
    pip install -r requirements.txt
    sudo npm install
    npm run tailwind
-   python manage.py run
+   python manage.py runserver
    
 5. Em seguida execute os seguintes comandos:
    ```bash
@@ -93,7 +94,8 @@ Para rodar o projeto localmente, siga os passos abaixo:
    ```bash
    python manage.py createsuperuser
 
-7. Abra a **URL** em seu browser <localost:8000>
+7. Digite a seguinte **URL** em seu browser 
+   >localost:8000
 
 ## Licença
 
