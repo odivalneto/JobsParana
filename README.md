@@ -15,7 +15,8 @@ Sistema de cadastramento e divulgação de vagas de trabalhos para o estado do P
 - [Funcionalidades Externas](#funcionalidades-externa)
 - [Funcionalidades Internas](#funcionalidades-interna)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Instalação](#instalação)
+- [Docker Container](#docker-container)
+- [Django Run](#django-run)
 - [Uso](#uso)
 - [Licença](#licença)
 
