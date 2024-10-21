@@ -47,7 +47,7 @@ Sistema de cadastramento e divulgação de vagas de trabalhos para o estado do P
 - Banco de Dados: [ PostgreSQL ]
 - Outras ferramentas: [ Docker, GitHub ]
 
-## Instalação
+## Docker Container
 
 Para rodar o projeto localmente, siga os passos abaixo:
 
@@ -55,14 +55,44 @@ Para rodar o projeto localmente, siga os passos abaixo:
    ```bash
    git clone https://github.com/odivalneto/JobsParana
    
-2. Instale o Docker Desktop
+2. Instale o Docker Desktop:
    >https://www.docker.com/products/docker-desktop/
 
-3. Renomeie ``.env-config`` para ``.env`` e confirgure as variáveis de ambiente
+3. Renomeie ``.env-config`` para ``.env`` e confirgure as variáveis de ambiente.
 
-4. Execute o comando no terminal de sua escolha
+4. Execute o comando no terminal de sua escolha:
    ```bash
    docker-compose -p jobsparana up -d
+   
+## Django Run
+
+1. Adicione uma **SECRET_KEY** nos ``settings.py``:
+   >https://djecrety.ir
+
+2. Altere a comunicação com o ``Database`` em ``settings.py``:
+   ```bash
+   'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+   
+4. Execute os seguintes comandos no terminal:
+   ```bash 
+   pip install -r requirements.txt
+   sudo npm install
+   npm run tailwind
+   python manage.py run
+   
+5. Em seguida execute os seguintes comandos:
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   
+6. Crie um super usuário:
+   ```bash
+   python manage.py createsuperuser
+
+7. Abra a **URL** em seu browser <localost:8000>
 
 ## Licença
 
