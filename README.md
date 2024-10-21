@@ -12,23 +12,33 @@ Sistema de cadastramento e divulgação de vagas de trabalhos para o estado do P
 
 ## Índice
 
-- [Funcionalidades](#funcionalidades)
+- [Funcionalidades Externas](#funcionalidades-externa)
+- [Funcionalidades Internas](#funcionalidades-interna)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Instalação](#instalação)
 - [Uso](#uso)
 - [Licença](#licença)
 
-## Funcionalidades
+## Funcionalidades Externa
 
-- [x] Painel Administrativo
 - [x] Login
-- [x] Registro de Usuário
+- [x] Criação de Usuário
 - [x] Listagem de Vagas
 - [x] Detalhe da Vaga
-- [ ] Cadastro de Vagas (Em Desenvolvimento)
-- [ ] Cadastro de Currículo
+- [ ] Cadastro de Currículo (Em Desenvolvimento)
 - [ ] Atualização de Perfil
+- [ ] Listagem de Candidaturas
 - [ ] Landing Page
+
+
+## Funcionalidades Interna
+
+- [x] Painel Administrativo
+- [ ] Login
+- [ ] Cadastro de Usuários
+- [ ] Cadastro de Vagas
+- [ ] Cadastro de Empresas
+- [ ] Listagem de Candidaturas
 
 ## Tecnologias Utilizadas
 
@@ -44,6 +54,15 @@ Para rodar o projeto localmente, siga os passos abaixo:
 1. Clone o repositório:
    ```bash
    git clone https://github.com/odivalneto/JobsParana
+   
+2. Instale o Docker Desktop
+   >https://www.docker.com/products/docker-desktop/
+
+3. Renomeie ``.env-config`` para ``.env`` e confirgure as variáveis de ambiente
+
+4. Execute o comando no terminal de sua escolha
+   ```bash
+   docker-compose -p jobsparana up -d
 
 ## Licença
 
