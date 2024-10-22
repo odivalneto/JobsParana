@@ -1,0 +1,12 @@
+{% load forms_widget %}
+
+{% for input in form %}
+    
+    {% if not input.is_hidden %}
+        <div class="grid gap-1.5">
+            {{ input | label_css:'block text-sm font-medium text-gray-900 dark:text-white' | cut:':' | safe}}
+            {{ input | input_css:'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5' }}
+        </div>
+    {% endif %}
+
+{% endfor %}

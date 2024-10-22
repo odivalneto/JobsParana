@@ -1,15 +1,33 @@
 {% extends '_login.html' %}
 {% load static %}
+{% load forms_widget %}
 
 {% block content %}
 
-    <form method="POST">
-        {% csrf_token %}
+    <section class="bg-white rounded-lg shadow-md p-4 mx-auto max-w-xl">
 
-        {{ form.as_p }}
-    
-    <button type="submit">Salvar</button>
+        <div class="container grid gap-4 max-w-sm mx-auto">
 
-    </form>
+            <div class="flex space-x-2 items-center mx-auto">
+                <img src="{% static 'imgs/logo-sine.png' %}" class="h-12" alt="FlowBite Logo"/>
+                <div class="grid">
+                    <h2 class="text-3xl font-black">SiNE PR</h2>
+                    <span class="text-xs border-t-[1px]">Agência do Trabalhador</span>
+                </div>
+            </div>
+
+            <form method="post" class="grid gap-4">
+                {% csrf_token %}
+                {% form_flowbite form %}
+                <button type="submit"
+                        class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Registrar
+                </button>
+            </form>
+
+        </div>
+
+    </section>
+
 
 {% endblock %}

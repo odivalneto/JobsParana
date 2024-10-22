@@ -4,8 +4,13 @@ from core.models import UserModel, JobModel, CurriculumModel, ApplicationModel, 
 
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    birth_date = forms.DateField(widget=forms.DateInput, required=False)
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'placeholder': 'email@dominio.com'}))
+    full_name = forms.CharField(label='Nome Completo', widget=forms.TextInput(attrs={'placeholder': 'ex. Maria Aparecida'}))
+    birth_date = forms.DateField(label='Aniversário', widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA'}))
+    phone_number = forms.CharField(label='Celular', widget=forms.TextInput(attrs={'placeholder': '(__) _ ____-____'}))
+    password = forms.CharField(label='Senha', widget=forms.PasswordInput)
+
+    # use_required_attribute = True
 
     class Meta:
         model = UserModel

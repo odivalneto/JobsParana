@@ -6,7 +6,7 @@ from core.forms import UserForm, CurriculumForm, ProfileForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel
 
 
-@register.filter(is_safe=True)
+@register.filter(name='split_url', is_safe=True)
 @stringfilter
 def split_url(string, sep):
     return string.split(sep)
