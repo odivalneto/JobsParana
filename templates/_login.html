@@ -16,19 +16,22 @@
 
 <body class="bg-gray-50">
 
-<main class="p-4 mt-6">
+<main class="px-4 py-10">
+
     {% block content %}{% endblock content %}
-</main>
-{#FOOTER#}
-<div class="absolute bottom-0 w-full flex p-4">
-    <div class="flex items-center mx-auto">
-        <img src="{% static 'imgs/brasao_parana.svg' %}" class="h-10 me-3" alt="FlowBite Logo"/>
-        <div class="grid">
-            <span class="font-bold whitespace-nowrap dark:text-white">Paraná</span>
-            <span class="text-xs dark:text-white border-t-[1px] border-green-400">Governo do Estado</span>
+
+    {#FOOTER#}
+    <div class="py-6 grid">
+        <div class="flex items-center mx-auto">
+            <img src="{% static 'imgs/brasao_parana.svg' %}" class="h-10 me-3" alt="FlowBite Logo"/>
+            <div class="grid">
+                <span class="font-bold whitespace-nowrap dark:text-white">Paraná</span>
+                <span class="text-xs dark:text-white border-t-[1px] border-green-400">Governo do Estado</span>
+            </div>
         </div>
     </div>
-</div>
+
+</main>
 
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>

@@ -1,15 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
-from django.template.defaultfilters import stringfilter, register
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from core.forms import UserForm, CurriculumForm, ProfileForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel
-
-
-@register.filter(name='split_url', is_safe=True)
-@stringfilter
-def split_url(string, sep):
-    return string.split(sep)
 
 
 # MARK: - PROFILE
