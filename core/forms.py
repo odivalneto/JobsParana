@@ -1,3 +1,5 @@
+from random import choices
+
 from django import forms
 from core.models import UserModel, JobModel, CurriculumModel, ApplicationModel, LanguageModel, ExperienceModel, \
     QualificationModel
@@ -29,9 +31,10 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
-    birth_date = forms.DateField(required=False, widget=forms.DateInput())
-    phone_number = forms.CharField(required=False)
+    email = forms.EmailField(label='Email' ,widget=forms.TextInput(attrs={'placeholder': 'email@dominio.com'}))
+    full_name = forms.CharField(label='Nome Completo', required=True)
+    birth_date = forms.DateField(label='Aniversário', required=False, widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA'}))
+    phone_number = forms.CharField(label='Celular', required=False, widget=forms.TextInput(attrs={'placeholder': '(__) _ ____-____'}))
 
     class Meta:
         model = UserModel
@@ -45,7 +48,24 @@ class JobsForm(forms.ModelForm):
 
 
 class CurriculumForm(forms.ModelForm):
-    about = forms.CharField(widget=forms.Textarea, required=False)
+    level_education = {
+        'Incompleto': 'Incompleto',
+        'Completo': 'Completo',
+        'Cursando': 'Cursando'
+    }
+
+    type_education = {
+        'Fundamental': 'Fundamental',
+        'Médio': 'Medio',
+        'Superior': 'Superior',
+        'Pós Graduação': 'Pós Graduação',
+        'Metrado': 'Metrado',
+        'Doutorado': 'Doutorado'
+    }
+
+    about = forms.CharField(label='Sobre',widget=forms.Textarea(attrs={'placeholder': 'Conte mais sobre você...'}), required=False)
+    education = forms.ChoiceField(label='Escolaridade', choices=type_education)
+    level = forms.ChoiceField(label='Nível', choices=level_education)
 
     class Meta:
         model = CurriculumModel

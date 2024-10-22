@@ -2,5 +2,9 @@
 {% block title %}Candidaturas{% endblock %}
 
 {% block content %}
-    
+
+    {% for job in applications %}
+        <a href="#">{{ job.job.title }}</a>
+    {% endfor %}
+
 {% endblock %}

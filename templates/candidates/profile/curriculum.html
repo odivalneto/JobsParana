@@ -1,59 +1,34 @@
 {% extends '_base.html' %}
 {% block title %} Meu Currículo {% endblock %}
+{% load custom_tags %}
 
 {% block content %}
 
     <section class="bg-white dark:bg-gray-900 p-4 shadow rounded-lg">
+    
+        <h1 class="text-2xl font-bold">Dados Pessoais</h1>
+        
+        <div class="container max-w-lg mx-auto my-4">
 
-        <div class="grid gap-4 mx-auto container max-w-xl">
-
-
-                <div class="grid">
-                    <label for="fullname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nome
-                        Completo</label>
-                    <span id="fullname"
-                          class="bg-gray-50 rounded-lg border border-gray-300 p-2">{{ curriculum.user.full_name }}</span>
-                </div>
-
-                <div class="grid">
-                    <label for="birth_date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aniversário</label>
-                    <span id="birth_date"
-                          class="bg-gray-50 rounded-lg border border-gray-300 p-2">
-                        {% if curriculum.user.birth_date %}
-                            {{ curriculum.user.birth_date | date }}
-                        {% else %}
-                            -
-                        {% endif %}
-                    </span>
-                </div>
-
-                <div class="grid">
-                    <label for="email"
-                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                    <span id="email"
-                          class="bg-gray-50 rounded-lg border border-gray-300 p-2">{{ curriculum.user.email }}</span>
-                </div>
-
-                <div class="grid">
-                    <label for="phone"
-                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Celular</label>
-                    <span id="phone"
-                          class="bg-gray-50 rounded-lg border border-gray-300 p-2">{{ curriculum.user.phone_number | phone2numeric }}</span>
-                </div>
-
-
-            <form method="post">
+            <form method="post" class="grid gap-6">
                 {% csrf_token %}
 
-                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sobre</label>
-                <textarea id="message" rows="4"
-                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="Escreva um pouco sobre você..."></textarea>
+                <div class="grid gap-4">
+                    {% form_flowbite form_profile %}
+                </div>
+                
+                <div class="grid gap-4">
+                    {% form_flowbite form_curriculum %}
+                </div>
+
+                <button type="submit" class="p-2 w-full bg-primary-600 text-white rounded-lg">
+                    Salvar
+                </button>
 
             </form>
 
         </div>
-
+    
     </section>
 
 

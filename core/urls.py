@@ -13,5 +13,5 @@ urlpatterns = [
     path('profile/', MyProfileView.as_view(), name='profile'),
     path('profile/registration/', UserRegistrationView.as_view(), name='registration'),
     path('curriculum/<id>/', MyCurriculumView.as_view(), name='curriculum'),
-    path('applications/', MyApplicationsView.as_view(), name='applications'),
+    path('applications/<id>/', MyApplicationsView.as_view(), name='applications'),
 ]

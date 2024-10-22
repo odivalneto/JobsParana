@@ -111,7 +111,7 @@
             </li>
 
             <li>
-                <a href="#"
+                <a href="{% url 'core:applications' request.user.id %}"
                    class="{% path_name_css request.path 'applications' default='text-gray-500' selected='text-blue-600 bg-gray-50' %} flex items-center p-2 rounded-lg group">
                     <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                          width="26" height="26" fill="currentColor" viewBox="0 0 24 24">
@@ -120,7 +120,6 @@
                               clip-rule="evenodd"></path>
                     </svg>
                     <span class="flex-1 ms-3 whitespace-nowrap">Candidaturas</span>
-                    <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-50 rounded-full dark:bg-gray-700 dark:text-gray-300">3</span>
                 </a>
             </li>
 
@@ -136,7 +135,7 @@
                               clip-rule="evenodd"></path>
                     </svg>
 
-                    <span class="flex-1 ms-3 whitespace-nowrap">Meu Currículo</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Currículo</span>
                 </a>
             </li>
 

@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.context_processors import request
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from core.forms import UserForm, CurriculumForm, ProfileForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel
@@ -62,21 +63,34 @@ class MyCurriculumView(LoginRequiredMixin, TemplateView):
     def post(self, request, *args, **kwargs):
 
         curriculum = get_object_or_404(CurriculumModel, user_id=kwargs.get('id'))
+        profile = get_object_or_404(UserModel, id=kwargs.get('id'))
+
+        print(request.POST)
 
         if request.method == 'POST':
             form = CurriculumForm(request.POST, instance=curriculum)
+            form_profile = ProfileForm(request.POST, instance=profile)
 
-            if form.is_valid():
+            if form.is_valid() and form_profile.is_valid():
                 form.save()
+                form_profile.save()
 
         return self.get(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
 
         curriculum = CurriculumModel.objects.get_or_create(user_id=kwargs.get('id'))[0]
+        profile = get_object_or_404(UserModel, id=kwargs.get('id'))
+
         form = CurriculumForm(instance=curriculum)
 
-        return render(request, 'candidates/profile/curriculum.html', context={'curriculum': curriculum, 'form': form})
+        form_curriculum = CurriculumForm(instance=curriculum)
+        form_profile = ProfileForm(instance=profile)
+
+        return render(request, 'candidates/profile/curriculum.html',
+                      context={'curriculum': curriculum, 'form': form, 'form_curriculum': form_curriculum,
+                               'form_profile': form_profile })
+
 
 # MARK: - APPLICATIONS
 class MyApplicationsView(LoginRequiredMixin, ListView):
@@ -84,9 +98,13 @@ class MyApplicationsView(LoginRequiredMixin, ListView):
     context_object_name = 'applications'
     template_name = 'candidates/applications/list.html'
     paginate_by = 100
+    queryset = ApplicationModel.objects.all().order_by('-id')
 
-    def get_queryset(self):
-        return self.queryset.filter(is_active=True).order_by('-application_date')
+    def get(self, request, *args, **kwargs):
+        applications = self.queryset.filter(curriculum__user_id=kwargs.get('id'))
+
+        return render(request, self.template_name, context={'applications': applications})
+
 
 # MARK: - ACCOUNTS
 def login(request):
