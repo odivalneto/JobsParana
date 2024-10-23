@@ -10,6 +10,8 @@ module.exports = {
                 primary: {
                     "50": "#eff6ff",
                     "100": "#076ca9",
+                    "hover": "#077eca",
+
                 },
                 secondary: {
                     "50": "#ddffcb",

@@ -12,25 +12,22 @@
                 {% include 'misc/logo_agencia_trabalhador.html' %}
             </div>
 
-            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 class="text-xl font-bold text-gray-900">
                 Informe seus dados
             </h1>
 
             <form method="post" class="grid gap-4">
                 {% csrf_token %}
                 {% form_flowbite form %}
-
-
-                <button type="submit"
-                        class="w-full text-white bg-primary-100 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                
+                <button type="submit" class="btn-primary">
                     Registrar
                 </button>
 
-                <p class="text-sm font-light text-gray-500 dark:text-gray-400 py-2">Já possui conta? <a
+                <p class="text-sm font-light text-gray-500 py-2">Já possui conta? <a
                         href="{% url 'core:index' %}"
-                        class="font-medium text-primary-100 hover:underline dark:text-primary-500">Login</a></p>
-
-
+                        class="link-primary">Login</a></p>
+                
             </form>
 
         </div>

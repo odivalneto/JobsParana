@@ -14,7 +14,7 @@
     {% endcompress %}
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gray-100">
 
 {% if request.user.is_authenticated %}
     {% include 'misc/navbar.html' %}
@@ -23,9 +23,9 @@
 <main class="my-16 md:my-10 px-4 pb-10 md:p-9 md:ml-64">
 
     <div class="text-3xl font-bold py-4 flex">
-        {% block title %}{% endblock %} 
+        {% block title %}{% endblock %}
     </div>
-     
+
     {% block content %}{% endblock content %}
 
 </main>

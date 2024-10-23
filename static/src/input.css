@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+    .btn-primary {
+        @apply bg-primary-100 w-full text-white p-2 rounded-lg;
+    }
+
+    .btn-primary:hover {
+        @apply hover:bg-primary-hover transition duration-300;
+    }
+
+    .input-primary {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5;
+    }
+
+    .input-primary:focus {
+        @apply focus:ring-primary-100 border-primary-100;
+    }
+
+    .input-primary::placeholder {
+        @apply placeholder-gray-300;
+    }
+
+    .label-input {
+        @apply block text-sm font-medium text-gray-900 dark:text-white;
+    }
+
+    .link-primary {
+        @apply font-medium text-primary-100;
+    }
+    .link-primary:hover {
+        @apply hover:underline;
+    }
+
+
+}
