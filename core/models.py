@@ -213,12 +213,3 @@ class ApplicationModel(models.Model):
 
     def __str__(self):
         return self.job.title
-
-    def create_application(self, **kwargs):
-        application = self
-        application.job = kwargs['job']
-        application.curriculum = kwargs['curriculum']
-        application.status = 'Confirmada'
-        application.save()
-
-        print(application)

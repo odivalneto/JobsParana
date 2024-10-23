@@ -9,7 +9,7 @@ from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel
 class UserRegistrationView(FormView):
     form_class = UserForm
     template_name = 'registration/registration.html'
-    success_url = '/'
+    success_url = 'core:index'
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
