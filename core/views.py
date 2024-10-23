@@ -1,8 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
-from django.template.context_processors import request
 from django.views.generic import TemplateView, ListView, DetailView, FormView
-from core.forms import UserForm, CurriculumForm, ProfileForm
+from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel
 
 
@@ -54,6 +53,25 @@ class JobDetailView(LoginRequiredMixin, DetailView):
     model = JobModel
     context_object_name = 'job'
     template_name = 'candidates/jobs/detail.html'
+    success_url = 'jobs:detail'
+
+    def get_context_data(self, **kwargs):
+        job = self.get_object()
+        is_already = ApplicationModel.objects.filter(job=job, curriculum__user=self.request.user).exists()
+
+        context = {
+            'job': job,
+            'is_already': is_already
+        }
+
+        return context
+
+    def post(self, *args, **kwargs):
+
+        form = ApplicationForm()
+        form.create_apply(user=self.request.user, kwargs=self.get_object())
+
+        return self.get(*args, **kwargs)
 
 
 # MARK: - CURRICULUM
@@ -64,8 +82,6 @@ class MyCurriculumView(LoginRequiredMixin, TemplateView):
 
         curriculum = get_object_or_404(CurriculumModel, user_id=kwargs.get('id'))
         profile = get_object_or_404(UserModel, id=kwargs.get('id'))
-
-        print(request.POST)
 
         if request.method == 'POST':
             form = CurriculumForm(request.POST, instance=curriculum)
@@ -82,14 +98,12 @@ class MyCurriculumView(LoginRequiredMixin, TemplateView):
         curriculum = CurriculumModel.objects.get_or_create(user_id=kwargs.get('id'))[0]
         profile = get_object_or_404(UserModel, id=kwargs.get('id'))
 
-        form = CurriculumForm(instance=curriculum)
-
         form_curriculum = CurriculumForm(instance=curriculum)
         form_profile = ProfileForm(instance=profile)
 
         return render(request, 'candidates/profile/curriculum.html',
-                      context={'curriculum': curriculum, 'form': form, 'form_curriculum': form_curriculum,
-                               'form_profile': form_profile })
+                      context={'form_curriculum': form_curriculum,
+                               'form_profile': form_profile})
 
 
 # MARK: - APPLICATIONS

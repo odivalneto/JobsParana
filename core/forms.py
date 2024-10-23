@@ -1,6 +1,6 @@
-from random import choices
-
 from django import forms
+from django.shortcuts import get_object_or_404
+
 from core.models import UserModel, JobModel, CurriculumModel, ApplicationModel, LanguageModel, ExperienceModel, \
     QualificationModel
 
@@ -76,6 +76,14 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = ApplicationModel
         fields = '__all__'
+
+    @staticmethod
+    def create_apply(**kwargs):
+        apply = ApplicationModel()
+        apply.job = kwargs['kwargs']
+        apply.curriculum = get_object_or_404(CurriculumModel, user=kwargs['user'])
+        apply.status = 'Confirmada'
+        apply.save()
 
 
 class LanguageForm(forms.ModelForm):

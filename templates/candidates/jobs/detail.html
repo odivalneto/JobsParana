@@ -7,17 +7,21 @@
 
     <section class="grid gap-4 bg-white p-4 rounded-lg shadow-md">
 
-        <div class="flex justify-between items-center w-full">
+        <div class="flex justify-between items-center w-full space-x-2">
 
             <p class="text-gray-400"># {{ job.id_job }}</p>
 
-            {% if job.is_pcd %}
-                <span class="px-2 py-0.5 bg-red-100 text-red-600 rounded-full font-semibold">Exclusivo PCD</span>
-            {% endif %}
+            <div class="text-red-600 font-semibold ml-auto space-x-1">
 
-            {% if job.is_urgent %}
-                <span class="px-2 py-0.5 bg-red-100 text-red-600 rounded-full font-semibold">Urgente</span>
-            {% endif %}
+                {% if job.is_pcd %}
+                    <span class="px-2 py-0.5 bg-red-100 rounded-full">Exclusivo PCD</span>
+                {% endif %}
+
+                {% if job.is_urgent %}
+                    <span class="px-2 py-0.5 bg-red-100 rounded-full">Urgente</span>
+                {% endif %}
+
+            </div>
 
         </div>
 
@@ -106,11 +110,25 @@
 
         </div>
 
-        <div class="container mx-auto max-w-sm">
+        <div class="grid mx-auto max-w-sm container">
 
-            <button class="bg-primary-600 w-full text-white p-2 rounded-lg hover:bg-primary-500 transition duration-300">
-                Candidatar
-            </button>
+            {% if is_already %}
+
+                <span class="px-4 py-1.5 bg-green-100 text-green-600 rounded-full font-semibold text-center">Você já se candidatou</span>
+
+            {% else %}
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <button type="submit"
+                            class="bg-primary-600 hover:bg-primary-500 transition duration-300 w-full text-white p-2 rounded-lg ">
+                        Candidatar
+                    </button>
+
+                </form>
+
+            {% endif %}
 
         </div>
 
