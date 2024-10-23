@@ -17,6 +17,9 @@ module.exports = {
                 }
             }
         },
+        letterSpacing: {
+            'max': '.20em'
+        }
     },
     plugins: [
         require('flowbite/plugin')
