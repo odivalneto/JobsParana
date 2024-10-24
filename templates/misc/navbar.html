@@ -2,8 +2,12 @@
 {% load custom_tags %}
 
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-    <div class="px-3 py-3 lg:px-5 lg:pl-3">
+    <div class="px-3 py-3">
         <div class="flex items-center justify-between">
+
+            <div class="w-[30px] block md:hidden">
+                <img src="{% static 'imgs/brasao_parana.svg' %}" class="h-10" alt="Brasao Parana"/>
+            </div>
 
             <div class="text-sm">
                 {% include 'misc/logo_agencia_trabalhador.html' %}
@@ -11,7 +15,7 @@
 
             <div class="flex items-center">
 
-                <div class="flex items-center ms-3">
+                <div class="flex items-center">
 
                     <div>
                         <button type="button"
@@ -19,7 +23,7 @@
                             <span class="sr-only">Open user menu</span>
 
                             <svg class="w-[30px] h-[30px] text-gray-800 dark:text-white" aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none"
                                  viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-width="4"
                                       d="M12 6h.01M12 12h.01M12 18h.01"></path>
@@ -120,7 +124,7 @@
             </li>
 
             <li>
-                <a href="{% url 'core:curriculum' request.user.id %}"
+                <a href="{% url 'core:curriculum' %}"
                    class="{% path_name_css request.path 'curriculum' default='text-gray-500' selected='text-primary-100 bg-gray-50' %} flex items-center p-2 rounded-lg group">
 
                     <svg aria-hidden="true"

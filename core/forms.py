@@ -1,13 +1,16 @@
+from cProfile import label
+
 from django import forms
 from django.shortcuts import get_object_or_404
 
 from core.models import UserModel, JobModel, CurriculumModel, ApplicationModel, LanguageModel, ExperienceModel, \
-    QualificationModel
+    QualificationModel, AddressModel
 
 
 class UserForm(forms.ModelForm):
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'placeholder': 'email@dominio.com'}))
-    full_name = forms.CharField(label='Nome Completo', widget=forms.TextInput(attrs={'placeholder': 'ex. Maria Aparecida'}))
+    full_name = forms.CharField(label='Nome Completo',
+                                widget=forms.TextInput(attrs={'placeholder': 'ex. Maria Aparecida'}))
     birth_date = forms.DateField(label='Aniversário', widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA'}))
     phone_number = forms.CharField(label='Celular', widget=forms.TextInput(attrs={'placeholder': '(__) _ ____-____'}))
     password = forms.CharField(label='Senha', widget=forms.PasswordInput)
@@ -31,14 +34,31 @@ class UserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
-    email = forms.EmailField(label='Email' ,widget=forms.TextInput(attrs={'placeholder': 'email@dominio.com'}))
+    email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'placeholder': 'email@dominio.com'}))
     full_name = forms.CharField(label='Nome Completo', required=True)
-    birth_date = forms.DateField(label='Aniversário', required=False, widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA'}))
-    phone_number = forms.CharField(label='Celular', required=False, widget=forms.TextInput(attrs={'placeholder': '(__) _ ____-____'}))
+    birth_date = forms.DateField(label='Aniversário', required=False,
+                                 widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA'}))
+    phone_number = forms.CharField(label='Celular', required=False,
+                                   widget=forms.TextInput(attrs={'placeholder': '(__) _ ____-____'}))
 
     class Meta:
         model = UserModel
         fields = ['email', 'full_name', 'birth_date', 'phone_number']
+
+
+class AddressForm(forms.ModelForm):
+    zipcode = forms.CharField(label='CEP', widget=forms.TextInput(attrs={'placeholder': '00000-000'}))
+    address = forms.CharField(label='Endereço')
+    number = forms.CharField(label='Número')
+    complement = forms.CharField(label='Complemento')
+    region = forms.CharField(label='Bairro')
+    city = forms.CharField(label='Cidade')
+    state = forms.CharField(label='Estado')
+    country = forms.CharField(label='País')
+
+    class Meta:
+        model = AddressModel
+        fields = ['zipcode', 'address', 'number', 'complement', 'region', 'city', 'state', 'country']
 
 
 class JobsForm(forms.ModelForm):
@@ -63,7 +83,8 @@ class CurriculumForm(forms.ModelForm):
         'Doutorado': 'Doutorado'
     }
 
-    about = forms.CharField(label='Sobre',widget=forms.Textarea(attrs={'placeholder': 'Conte mais sobre você...'}), required=False)
+    about = forms.CharField(label='Sobre', widget=forms.Textarea(attrs={'placeholder': 'Conte mais sobre você...'}),
+                            required=False)
     education = forms.ChoiceField(label='Escolaridade', choices=type_education)
     level = forms.ChoiceField(label='Nível', choices=level_education)
 

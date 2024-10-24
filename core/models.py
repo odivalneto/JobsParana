@@ -59,6 +59,28 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.full_name
 
+class AddressModel(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='user_addresses')
+    zipcode = models.CharField(_('Zip Code'), max_length=30, default='')
+    address = models.CharField(_('Address'), max_length=255)
+    number = models.CharField(_('Number'), max_length=255, blank=True)
+    complement = models.CharField(_('Complement'), max_length=255, blank=True)
+    region = models.CharField(_('Region'), max_length=255, blank=True)
+    city = models.CharField(_('City'), max_length=255, blank=True)
+    state = models.CharField(_('State'), max_length=255, blank=True)
+    country = models.CharField(_('Country'), max_length=255, blank=True)
+
+    REQUIRED_FIELDS = ['address', 'region', 'city', 'state', 'country']
+
+    class Meta:
+        ordering = ['address']
+        verbose_name = 'Address'
+        verbose_name_plural = 'Addresses'
+
+    def __str__(self):
+        return f'{self.pk}'
+
 
 class CurriculumModel(models.Model):
     level_education = {

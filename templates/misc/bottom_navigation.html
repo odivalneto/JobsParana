@@ -28,7 +28,7 @@
             <span class="text-sm">Candidaturas</span>
         </a>
 
-        <a href="{% url 'core:curriculum' request.user.id %}"
+        <a href="{% url 'core:curriculum' %}"
            class="{% path_name_css request.path 'curriculum' default='text-gray-500' selected='text-primary-100 bg-gray-50' %} inline-flex flex-col space-y-1 items-center justify-center px-5 dark:hover:bg-gray-800 group">
 
             <svg aria-hidden="true"

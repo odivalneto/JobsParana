@@ -1,3 +1,5 @@
+from lib2to3.fixes.fix_input import context
+
 from django import template
 from django.template.defaultfilters import stringfilter
 
@@ -35,3 +37,7 @@ def label_css(field, css):
 @register.inclusion_tag('misc/flowbite_forms.html')
 def form_flowbite(form):
     return {'form': form }
+
+@register.inclusion_tag('misc/empty.html')
+def empty_list(**kwargs):
+    return kwargs

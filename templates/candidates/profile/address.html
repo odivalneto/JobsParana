@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+{% block title %} Endereço {% endblock %}
+{% load custom_tags %}
+
+{% block content %}
+
+
+
+    <section class="bg-white p-4 shadow rounded-lg">
+
+        <div class="container max-w-xl mx-auto">
+
+            <form method="post" class="grid gap-6">
+                {% csrf_token %}
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    {% form_flowbite form %}
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Salvar
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+{% endblock %}

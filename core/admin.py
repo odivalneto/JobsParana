@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import UserModel, ExperienceModel, JobModel, QualificationModel, LanguageModel, \
-    CurriculumModel, ApplicationModel, CompanyModel
+    CurriculumModel, ApplicationModel, CompanyModel, AddressModel
 
 
 # Register your models here.
@@ -13,7 +13,10 @@ from .models import UserModel, ExperienceModel, JobModel, QualificationModel, La
 @admin.register(CurriculumModel)
 @admin.register(ApplicationModel)
 @admin.register(CompanyModel)
+@admin.register(AddressModel)
 
+class AddressModelAdmin(admin.ModelAdmin):
+    pass
 
 class UserModelAdmin(admin.ModelAdmin):
     pass

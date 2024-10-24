@@ -1,8 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView, DetailView, FormView
-from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm
-from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel
+from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm
+from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel, QualificationModel, AddressModel
 
 
 # MARK: - PROFILE
@@ -41,7 +41,7 @@ class JobListView(LoginRequiredMixin, ListView):
     model = JobModel
     context_object_name = 'jobs'
     template_name = 'candidates/jobs/list.html'
-    paginate_by = 100
+    paginate_by = 30
     allow_empty = True
     queryset = JobModel.objects.all()
 
@@ -67,7 +67,6 @@ class JobDetailView(LoginRequiredMixin, DetailView):
         return context
 
     def post(self, *args, **kwargs):
-
         form = ApplicationForm()
         form.create_apply(user=self.request.user, kwargs=self.get_object())
 
@@ -76,34 +75,60 @@ class JobDetailView(LoginRequiredMixin, DetailView):
 
 # MARK: - CURRICULUM
 class MyCurriculumView(LoginRequiredMixin, TemplateView):
-    template_name = 'candidates/profile/curriculum.html'
+    template_name = 'candidates/profile/index.html'
 
-    def post(self, request, *args, **kwargs):
 
-        curriculum = get_object_or_404(CurriculumModel, user_id=kwargs.get('id'))
-        profile = get_object_or_404(UserModel, id=kwargs.get('id'))
+class MyProfileDetailView(LoginRequiredMixin, DetailView):
+    model = UserModel
+    template_name = 'candidates/profile/profile.html'
+    success_url = 'core:profile'
 
-        if request.method == 'POST':
-            form = CurriculumForm(request.POST, instance=curriculum)
-            form_profile = ProfileForm(request.POST, instance=profile)
+    def get_context_data(self, **kwargs):
+        form = ProfileForm(instance=self.get_object())
+        context = {
+            'form': form
+        }
+        return context
 
-            if form.is_valid() and form_profile.is_valid():
-                form.save()
-                form_profile.save()
+    def post(self, *args, **kwargs):
+        form = ProfileForm(self.request.POST, instance=self.get_object())
+        if form.is_valid():
+            form.save()
+        return self.get(*args, **kwargs)
 
-        return self.get(request, *args, **kwargs)
 
-    def get(self, request, *args, **kwargs):
+class MyAddressDetailView(LoginRequiredMixin, DetailView):
+    model = AddressModel
+    template_name = 'candidates/profile/address.html'
 
-        curriculum = CurriculumModel.objects.get_or_create(user_id=kwargs.get('id'))[0]
-        profile = get_object_or_404(UserModel, id=kwargs.get('id'))
+    def get_context_data(self, **kwargs):
+        form = AddressForm(instance=self.get_object())
+        context = {
+            'form': form
+        }
+        return context
 
-        form_curriculum = CurriculumForm(instance=curriculum)
-        form_profile = ProfileForm(instance=profile)
+    def get_object(self, queryset=None):
+        obj = AddressModel.objects.get_or_create(user_id=self.request.user.id)[0]
+        return obj
 
-        return render(request, 'candidates/profile/curriculum.html',
-                      context={'form_curriculum': form_curriculum,
-                               'form_profile': form_profile})
+    def post(self, *args, **kwargs):
+        form = AddressForm(self.request.POST, instance=self.get_object())
+        if form.is_valid():
+            form.save()
+        return self.get(*args, **kwargs)
+
+
+class MyQualificationsDetailView(LoginRequiredMixin, ListView):
+    model = QualificationModel
+    template_name = 'candidates/profile/qualifications.html'
+    context_object_name = 'qualifications'
+
+
+class MyExperienceDetailView(LoginRequiredMixin, ListView):
+    model = ApplicationModel
+    template_name = 'candidates/profile/experiences.html'
+    context_object_name = 'experiences'
 
 
 # MARK: - APPLICATIONS
@@ -111,7 +136,7 @@ class MyApplicationsView(LoginRequiredMixin, ListView):
     model = ApplicationModel
     context_object_name = 'applications'
     template_name = 'candidates/applications/list.html'
-    paginate_by = 100
+    paginate_by = 20
     queryset = ApplicationModel.objects.all().order_by('-id')
 
     def get(self, request, *args, **kwargs):

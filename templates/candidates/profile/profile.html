@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+{% block title %} Dados Pessoais {% endblock %}
+{% load custom_tags %}
+
+{% block content %}
+    
+    <section class="bg-white p-4 shadow rounded-lg">
+    
+        <div class="container max-w-lg mx-auto">
+
+            <form method="post" class="grid gap-6">
+                {% csrf_token %}
+
+                <div class="grid gap-4">
+                    {% form_flowbite form %}
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Salvar
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+    
+{% endblock %}
