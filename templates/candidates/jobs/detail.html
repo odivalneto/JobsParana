@@ -124,8 +124,6 @@
 
             </div>
 
-            {#            <p class="text-2xl font-bold text-center">R$ {{ job.remuneration }}</p>#}
-
         </div>
 
         <div class="grid mx-auto max-w-sm container">
@@ -136,15 +134,21 @@
 
             {% else %}
 
-                <form method="post">
-                    {% csrf_token %}
+                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                        class="btn-primary"
+                        type="button">
+                    Quero me candidatar
+                </button>
 
-                    <button type="submit"
-                            class="btn-primary">
-                        Candidatar
-                    </button>
-
-                </form>
+                {#                <form method="post">#}
+                {#                    {% csrf_token %}#}
+                {##}
+                {#                    <button type="submit"#}
+                {#                            class="btn-primary">#}
+                {#                        Candidatar#}
+                {#                    </button>#}
+                {##}
+                {#                </form>#}
 
             {% endif %}
 
@@ -152,6 +156,6 @@
 
 
     </section>
-
+    
 
 {% endblock %}

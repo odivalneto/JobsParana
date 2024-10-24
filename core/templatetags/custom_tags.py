@@ -1,5 +1,3 @@
-from lib2to3.fixes.fix_input import context
-
 from django import template
 from django.template.defaultfilters import stringfilter
 
@@ -40,4 +38,8 @@ def form_flowbite(form):
 
 @register.inclusion_tag('misc/empty.html')
 def empty_list(**kwargs):
+    return kwargs
+
+@register.inclusion_tag('misc/empty.html')
+def alert_modal(**kwargs):
     return kwargs

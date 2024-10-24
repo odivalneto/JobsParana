@@ -29,7 +29,7 @@ class UserForm(forms.ModelForm):
         data = self.clean()
         user = UserModel.objects.create_user(email=data['email'], password=data['password'],
                                              full_name=data['full_name'],
-                                             birth_date=data['birth_date'])
+                                             birth_date=data['birth_date'], phone_number=data['phone_number'])
         user.save()
 
 
@@ -101,7 +101,7 @@ class ApplicationForm(forms.ModelForm):
     @staticmethod
     def create_apply(**kwargs):
         apply = ApplicationModel()
-        apply.job = kwargs['kwargs']
+        apply.job = kwargs['job']
         apply.curriculum = get_object_or_404(CurriculumModel, user=kwargs['user'])
         apply.status = 'Confirmada'
         apply.save()

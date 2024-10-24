@@ -11,8 +11,8 @@ class UserRegistrationView(FormView):
     template_name = 'registration/registration.html'
     success_url = 'core:index'
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+    def post(self, *args, **kwargs):
+        form = self.form_class(self.request.POST)
         if form.is_valid():
             form.save()
 
@@ -58,17 +58,19 @@ class JobDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         job = self.get_object()
         is_already = ApplicationModel.objects.filter(job=job, curriculum__user=self.request.user).exists()
+        is_curriculum_created = CurriculumModel.objects.filter(user=self.request.user).exists()
 
         context = {
             'job': job,
-            'is_already': is_already
+            'is_already': is_already,
+            'is_curriculum_created': is_curriculum_created
         }
 
         return context
 
     def post(self, *args, **kwargs):
         form = ApplicationForm()
-        form.create_apply(user=self.request.user, kwargs=self.get_object())
+        form.create_apply(user=self.request.user, job=self.get_object())
 
         return self.get(*args, **kwargs)
 

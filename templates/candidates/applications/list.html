@@ -1,10 +1,17 @@
 {% extends '_base.html' %}
 {% block title %}Candidaturas{% endblock %}
+{% load custom_tags %}
 
 {% block content %}
 
     {% for job in applications %}
-        <a href="#">{{ job.job.title }}</a>
+        
+        <a href="#" class="bg-white rounded-lg shadow-lg">{{ job.job.title }}</a>
+        
+        {% empty %}
+        
+        {% empty_list title='Nenhuma Candidatura' message='Suas cadidaturas aparecerão aqui'%}
+
     {% endfor %}
 
 {% endblock %}
