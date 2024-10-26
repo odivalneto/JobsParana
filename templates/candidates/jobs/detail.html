@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load custom_tags %}
 {% block title %}
     {{ job.title }}
 {% endblock %}
@@ -134,21 +135,12 @@
 
             {% else %}
 
-                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                <button data-modal-target="alert_modal" data-modal-toggle="alert_modal"
                         class="btn-primary"
                         type="button">
                     Quero me candidatar
                 </button>
-
-                {#                <form method="post">#}
-                {#                    {% csrf_token %}#}
-                {##}
-                {#                    <button type="submit"#}
-                {#                            class="btn-primary">#}
-                {#                        Candidatar#}
-                {#                    </button>#}
-                {##}
-                {#                </form>#}
+                
 
             {% endif %}
 
@@ -156,6 +148,8 @@
 
 
     </section>
+    
+    {% alert_modal id_modal='alert_modal' message='Confirmar candidatura?' type_button='submit' %}
     
 
 {% endblock %}

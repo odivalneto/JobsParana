@@ -1,8 +1,4 @@
-from cProfile import label
-
 from django import forms
-from django.shortcuts import get_object_or_404
-
 from core.models import UserModel, JobModel, CurriculumModel, ApplicationModel, LanguageModel, ExperienceModel, \
     QualificationModel, AddressModel
 
@@ -14,8 +10,6 @@ class UserForm(forms.ModelForm):
     birth_date = forms.DateField(label='Aniversário', widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA'}))
     phone_number = forms.CharField(label='Celular', widget=forms.TextInput(attrs={'placeholder': '(__) _ ____-____'}))
     password = forms.CharField(label='Senha', widget=forms.PasswordInput)
-
-    # use_required_attribute = True
 
     class Meta:
         model = UserModel
@@ -102,7 +96,7 @@ class ApplicationForm(forms.ModelForm):
     def create_apply(**kwargs):
         apply = ApplicationModel()
         apply.job = kwargs['job']
-        apply.curriculum = get_object_or_404(CurriculumModel, user=kwargs['user'])
+        apply.curriculum = CurriculumModel.objects.get_or_create(user=kwargs['user'])[0]
         apply.status = 'Confirmada'
         apply.save()
 

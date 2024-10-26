@@ -1,5 +1,8 @@
+from select import select
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.context_processors import request
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel, QualificationModel, AddressModel
@@ -53,7 +56,6 @@ class JobDetailView(LoginRequiredMixin, DetailView):
     model = JobModel
     context_object_name = 'job'
     template_name = 'candidates/jobs/detail.html'
-    success_url = 'jobs:detail'
 
     def get_context_data(self, **kwargs):
         job = self.get_object()
@@ -72,7 +74,7 @@ class JobDetailView(LoginRequiredMixin, DetailView):
         form = ApplicationForm()
         form.create_apply(user=self.request.user, job=self.get_object())
 
-        return self.get(*args, **kwargs)
+        return redirect('core:applications', self.request.user.id)
 
 
 # MARK: - CURRICULUM

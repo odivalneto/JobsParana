@@ -40,6 +40,10 @@ def form_flowbite(form):
 def empty_list(**kwargs):
     return kwargs
 
-@register.inclusion_tag('misc/empty.html')
+@register.inclusion_tag('misc/alert_modal.html')
 def alert_modal(**kwargs):
+    return kwargs
+
+@register.inclusion_tag('misc/fab-button.html')
+def fab_button(**kwargs):
     return kwargs

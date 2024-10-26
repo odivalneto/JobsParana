@@ -4,14 +4,41 @@
 
 {% block content %}
 
-    {% for job in applications %}
-        
-        <a href="#" class="bg-white rounded-lg shadow-lg">{{ job.job.title }}</a>
-        
-        {% empty %}
-        
-        {% empty_list title='Nenhuma Candidatura' message='Suas cadidaturas aparecerão aqui'%}
+    <div class="grid md:grid-cols-4 gap-4">
 
-    {% endfor %}
+        {% for application in applications %}
+
+            <a href="{% url 'core:applications' request.user.id %}" class="box relative pb-6">
+
+                <div class="box__content">
+
+                    <div class="box__header">
+                        <span class="text-sm">#{{ application.job.id_job }}</span>
+                        <span class="{% if application.status == 'Não Selecionada' %} box__tag-danger {% else %} box__tag-success {% endif %}">{{ application.status }}</span>
+                    </div>
+
+                    <h1 class="box__title">
+                        {{ application.job.title }}
+                    </h1>
+
+                    <p class="box__description text-sm">
+                        {{ application.job.requirements | linebreaksbr }}
+                    </p>
+
+                    <p class="box__footer-date">{{ application.application_date }}</p>
+
+                </div>
+
+            </a>
+
+        {% empty %}
+
+            {% empty_list title='Nenhuma Candidatura' message='Suas cadidaturas aparecerão aqui' %}
+
+        {% endfor %}
+
+    </div>
+
+
 
 {% endblock %}

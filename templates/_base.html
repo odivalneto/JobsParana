@@ -7,11 +7,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1,  user-scalable=no">
-    <title>Sine Paraná</title>
+    <title>Agência do Trabalhador</title>
 
-    {% compress css %}
-        <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    {% compress css file main %}
+        <link rel="stylesheet" href="{% static 'src/css/output.css' %}">
     {% endcompress %}
+
 </head>
 
 <body class="bg-gray-100">
@@ -34,6 +35,10 @@
     {% include 'misc/bottom_navigation.html' %}
 {% endif %}
 
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+{% compress js file main %}
+    <script src="{% static 'src/js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+{% endcompress %}
+
 </body>
 </html>
