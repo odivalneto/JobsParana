@@ -8,7 +8,7 @@
 
         {% for application in applications %}
 
-            <a href="{% url 'core:applications' request.user.id %}" class="box relative pb-6">
+            <a href="{% url 'core:application_detail' application.pk %}" class="box relative pb-6">
 
                 <div class="box__content">
 

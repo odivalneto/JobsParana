@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% load custom_tags %}
+
+{% block title %} {{ application.job.title }} {% endblock %}
+
+{% block content %}
+
+    <section class="box">
+    
+        <div class="box__content">
+            {{ application.application_date }}
+
+            <div class="max-w-sm">
+                <button class="btn-primary">
+                    Remover Candidatura
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}

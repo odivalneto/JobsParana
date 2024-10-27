@@ -1,11 +1,15 @@
-from select import select
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
-from django.template.context_processors import request
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel, QualificationModel, AddressModel
+
+
+# MARK: - SEARCH JOBS
+class SearchView(LoginRequiredMixin, ListView):
+    template_name = ''
+    context_object_name = 'queryset'
+    queryset = JobModel.objects.all()
 
 
 # MARK: - PROFILE
@@ -147,6 +151,12 @@ class MyApplicationsView(LoginRequiredMixin, ListView):
         applications = self.queryset.filter(curriculum__user_id=kwargs.get('id'))
 
         return render(request, self.template_name, context={'applications': applications})
+
+
+class MyApplicationDetailView(LoginRequiredMixin, DetailView):
+    model = ApplicationModel
+    context_object_name = 'application'
+    template_name = 'candidates/applications/detail.html'
 
 
 # MARK: - ACCOUNTS

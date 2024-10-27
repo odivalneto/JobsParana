@@ -2,7 +2,8 @@ from django.shortcuts import redirect
 from django.urls import path
 
 from core.views import JobListView, MyProfileView, MyApplicationsView, MyCurriculumView, JobDetailView, \
-    UserRegistrationView, MyAddressDetailView, MyQualificationsDetailView, MyExperienceDetailView, MyProfileDetailView
+    UserRegistrationView, MyAddressDetailView, MyQualificationsDetailView, MyExperienceDetailView, MyProfileDetailView, \
+    MyApplicationDetailView
 
 app_name = 'core'
 
@@ -18,4 +19,5 @@ urlpatterns = [
     path('curriculum/<id>/qualifications/', MyQualificationsDetailView.as_view(), name='curriculum_qualifications'),
     path('curriculum/<id>/experiences/', MyExperienceDetailView.as_view(), name='curriculum_experiences'),
     path('applications/<id>/', MyApplicationsView.as_view(), name='applications'),
+    path('applications/<pk>/detail/', MyApplicationDetailView.as_view(), name='application_detail'),
 ]
