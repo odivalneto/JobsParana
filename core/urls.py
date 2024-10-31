@@ -3,12 +3,13 @@ from django.urls import path
 
 from core.views import JobListView, MyProfileView, MyApplicationsView, MyCurriculumView, JobDetailView, \
     UserRegistrationView, MyAddressDetailView, MyQualificationsDetailView, MyExperienceDetailView, MyProfileDetailView, \
-    MyApplicationDetailView
+    MyApplicationDetailView, SearchView
 
 app_name = 'core'
 
 urlpatterns = [
     path('', lambda request: redirect('core:jobs'), name='index'),
+    path('search/', SearchView.as_view(), name='search'),
     path('jobs/', JobListView.as_view(), name='jobs'),
     path('jobs/<pk>/detail/', JobDetailView.as_view(), name='job_detail'),
     path('profile/', MyProfileView.as_view(), name='profile'),

@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% block title %} Buscar {% endblock title %}
+{% load custom_tags %}
+
+{% block content %}
+
+    <form method="get">
+
+        <input type="search" name="search" id="search" placeholder="Buscar">
+
+        <button class="btn-primary" type="submit">Buscar</button>
+    </form>
+
+    {% for candidate in page_obj %}
+
+        {{ candidate }}
+
+
+    {% endfor %}
+
+
+{% endblock %}

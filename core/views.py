@@ -1,15 +1,26 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView, DetailView, FormView
-from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm
+from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm, JobsForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel, QualificationModel, AddressModel
 
 
 # MARK: - SEARCH JOBS
 class SearchView(LoginRequiredMixin, ListView):
-    template_name = ''
-    context_object_name = 'queryset'
-    queryset = JobModel.objects.all()
+    model = JobModel
+    template_name = 'candidates/search/search.html'
+    paginate_by = 20
+
+    def get_queryset(self):
+
+        data = JobModel.objects.filter(is_available=True)
+
+        try:
+            data = super().get_queryset().filter(title__icontains=self.request.GET.get('search', ''), is_available=True)
+        except ValueError:
+            pass
+
+        return data
 
 
 # MARK: - PROFILE
@@ -33,7 +44,6 @@ class MyProfileView(LoginRequiredMixin, FormView):
 
     def get_initial(self):
         form = ProfileForm(self.request.user)
-
         return form
 
     def get_form(self, form_class=None):
@@ -46,15 +56,12 @@ class MyProfileView(LoginRequiredMixin, FormView):
 # MARK: - JOBS
 class JobListView(LoginRequiredMixin, ListView):
     model = JobModel
-    context_object_name = 'jobs'
     template_name = 'candidates/jobs/list.html'
     paginate_by = 30
-    allow_empty = True
-    queryset = JobModel.objects.all()
 
     def get_queryset(self):
-        return self.queryset.filter(is_available=True).order_by('-id')
-
+        if self.request.method == 'GET':
+            return super().get_queryset().filter(title__icontains=self.request.GET.get('search', ''), is_available=True)
 
 class JobDetailView(LoginRequiredMixin, DetailView):
     model = JobModel

@@ -140,7 +140,7 @@
                         type="button">
                     Quero me candidatar
                 </button>
-                
+
 
             {% endif %}
 
@@ -148,8 +148,12 @@
 
 
     </section>
-    
-    {% alert_modal id_modal='alert_modal' message='Confirmar candidatura?' type_button='submit' %}
-    
+
+    {% if not is_already %}
+
+        {% alert_modal id_modal='alert_modal' message='Confirmar candidatura?' type_button='submit' %}
+
+    {% endif %}
+
 
 {% endblock %}
