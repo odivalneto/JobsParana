@@ -1,0 +1,9 @@
+@layer components {
+    .link-primary {
+        @apply font-medium text-primary-100
+    }
+
+    .link-primary:hover {
+        @apply hover:underline
+    }
+}

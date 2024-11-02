@@ -1,92 +1,18 @@
+@import "./buttons.css";
+@import "./box.css";
+@import "./forms.css";
+@import "./stepper.css";
+@import "./links.css";
+@import "./tags.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-
-    .box {
-        @apply bg-white rounded-lg shadow-md
+    /*MAIN VIEW*/
+    .main__container {
+        @apply my-16 md:my-10 px-4 pb-10 md:p-9 md:ml-64
     }
-
-    .box__content {
-        @apply p-2 grid gap-2
-    }
-
-    .box__header {
-        @apply flex justify-between text-sm font-medium text-gray-400
-    }
-
-    .box__title {
-        @apply text-xl font-bold
-    }
-
-    .box__footer-date{
-        @apply text-sm text-gray-400 bottom-2 absolute
-    }
-
-    .box__tag-primary {
-        @apply px-2.5 py-1 bg-primary-100 text-primary-100 rounded-full text-sm
-    }
-
-    .box__tag-success {
-        @apply px-2.5 py-1 bg-green-100 text-green-600 rounded-full text-sm
-    }
-
-    .box__tag-warning {
-        @apply px-2.5 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm
-    }
-
-    .box__tag-danger {
-        @apply px-2.5 py-1 bg-red-100 text-red-600 rounded-full text-sm
-    }
-
-    .btn-primary {
-        @apply bg-primary-100 w-full text-white p-2 rounded-lg
-    }
-
-    .btn-primary:hover {
-        @apply hover:bg-primary-hover transition duration-300
-    }
-
-    .input-primary {
-        @apply bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5
-    }
-
-    .input-primary:focus {
-        @apply focus:ring-primary-100 border-primary-100
-    }
-
-    .input-primary::placeholder {
-        @apply placeholder-gray-300
-    }
-
-    .label-input {
-        @apply block text-sm font-medium text-gray-900 dark:text-white
-    }
-
-    .link-primary {
-        @apply font-medium text-primary-100
-    }
-
-    .link-primary:hover {
-        @apply hover:underline
-    }
-
-    .btn-primary-modal {
-        @apply px-5 py-2.5 text-white bg-primary-100 font-medium rounded-lg text-sm items-center
-    }
-
-    .btn-primary-modal:hover {
-        @apply hover:bg-primary-hover
-    }
-
-    .btn-secondary-modal {
-        @apply py-2.5 px-5 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200
-    }
-
-    .btn-secondary-modal:hover {
-        @apply hover:bg-gray-100
-    }
-
-
 }
+

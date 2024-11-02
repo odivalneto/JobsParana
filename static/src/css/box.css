@@ -1,0 +1,31 @@
+/*BOX UTILITY*/
+@layer components {
+
+    .box {
+        @apply bg-white rounded-lg shadow-md
+    }
+
+    .box__content {
+        @apply p-2 grid gap-2
+    }
+
+    .box__center {
+        @apply p-2 grid gap-2 max-w-lg mx-auto
+    }
+
+    .box__main {
+        @apply p-6 grid gap-2 w-full
+    }
+
+    .box__header {
+        @apply flex justify-between text-sm font-medium text-gray-400
+    }
+
+    .box__title {
+        @apply text-xl font-bold
+    }
+
+    .box__footer-date {
+        @apply text-sm text-gray-400 bottom-2 absolute
+    }
+}

@@ -1,0 +1,27 @@
+/*BUTTONS*/
+@layer components {
+    .btn-primary {
+        @apply bg-primary-100 w-full text-white p-2 rounded-lg
+    }
+
+    .btn-primary:hover {
+        @apply hover:bg-primary-hover transition duration-300
+    }
+
+    /*BUTTON MODAL*/
+    .btn-primary-modal {
+        @apply px-5 py-2.5 text-white bg-primary-100 font-medium rounded-lg text-sm items-center
+    }
+
+    .btn-primary-modal:hover {
+        @apply hover:bg-primary-hover
+    }
+
+    .btn-secondary-modal {
+        @apply py-2.5 px-5 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200
+    }
+
+    .btn-secondary-modal:hover {
+        @apply hover:bg-gray-100
+    }
+}

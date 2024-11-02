@@ -11,6 +11,7 @@
 
     {% compress css file main %}
         <link rel="stylesheet" href="{% static 'src/css/output.css' %}">
+        <link rel="stylesheet" href="{% static 'src/css/flowbite-icons.css' %}">
     {% endcompress %}
 
 </head>
@@ -21,7 +22,7 @@
     {% include 'misc/navbar.html' %}
 {% endif %}
 
-<main class="my-16 md:my-10 px-4 pb-10 md:p-9 md:ml-64">
+<main class="main__container">
 
     <div class="text-3xl font-bold py-4 flex">
         {% block title %}{% endblock %}

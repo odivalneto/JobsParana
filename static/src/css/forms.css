@@ -1,0 +1,18 @@
+/*DEFAULT INPUT FORMS*/
+@layer components {
+    .input-primary {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5
+    }
+
+    .input-primary:focus {
+        @apply focus:ring-primary-100 border-primary-100
+    }
+
+    .input-primary::placeholder {
+        @apply placeholder-gray-300
+    }
+
+    .label-input {
+        @apply block text-sm font-medium text-gray-900 dark:text-white
+    }
+}
