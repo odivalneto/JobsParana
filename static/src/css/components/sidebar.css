@@ -7,4 +7,20 @@
     .sidebar__container {
         @apply h-full px-3 pb-4 overflow-y-auto bg-white
     }
+
+    .sidebar__links {
+        @apply space-y-2 font-medium
+    }
+
+    .sidebar__link-selected {
+        @apply flex items-center p-2 rounded-lg text-primary-100 bg-gray-50
+    }
+
+    .sidebar__link-default {
+        @apply flex items-center p-2 rounded-lg text-gray-500
+    }
+
+    .sidebar__link-label {
+        @apply flex-1 ms-3 whitespace-nowrap
+    }
 }
