@@ -32,18 +32,18 @@ def label_css(field, css):
     label = field.label_tag(attrs={'class': css})
     return label
 
-@register.inclusion_tag('misc/flowbite_forms.html')
+@register.inclusion_tag('components/flowbite_forms.html')
 def form_flowbite(form):
     return {'form': form }
 
-@register.inclusion_tag('misc/empty.html')
+@register.inclusion_tag('components/empty.html')
 def empty_list(**kwargs):
     return kwargs
 
-@register.inclusion_tag('misc/alert_modal.html')
+@register.inclusion_tag('components/alert_modal.html')
 def alert_modal(**kwargs):
     return kwargs
 
-@register.inclusion_tag('misc/fab-button.html')
+@register.inclusion_tag('components/fab-button.html')
 def fab_button(**kwargs):
     return kwargs

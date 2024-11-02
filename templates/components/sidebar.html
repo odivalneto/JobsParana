@@ -1,87 +1,9 @@
 {% load static %}
 {% load custom_tags %}
 
-<nav class="fixed top-0 z-40 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-    <div class="px-3 py-3">
-        <div class="flex items-center justify-between">
+<aside class="sidebar" aria-label="Sidebar">
 
-            <div class="w-[30px] block md:hidden">
-                <img src="{% static 'imgs/brasao_parana.svg' %}" class="h-10" alt="Brasao Parana"/>
-            </div>
-
-            <div class="text-sm">
-                {% include 'misc/logo_agencia_trabalhador.html' %}
-            </div>
-
-            <div class="flex items-center">
-
-                <div class="flex items-center">
-
-                    <div>
-                        <button type="button"
-                                aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                            <span class="sr-only">Open user menu</span>
-
-                            <svg class="w-[30px] h-[30px] text-gray-800 dark:text-white" aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg" fill="none"
-                                 viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-width="4"
-                                      d="M12 6h.01M12 12h.01M12 18h.01"></path>
-                            </svg>
-
-                        </button>
-                    </div>
-
-                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-                         id="dropdown-user">
-
-                        <div class="px-4 py-3" role="none">
-                            <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                {{ request.user.full_name }}
-                            </p>
-                            <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                {{ request.user.email }}
-                            </p>
-                        </div>
-
-                        <ul class="py-1" role="none">
-
-                            <li>
-                                <a href="#"
-                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                   role="menuitem">Trocar Senha</a>
-                            </li>
-
-                            <li>
-                                <a href="#"
-                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                   role="menuitem">Ajustes</a>
-                            </li>
-
-                            <li>
-                                <form method="post" action="{% url 'logout' %}">
-                                    {% csrf_token %}
-                                    <button type="submit"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                            role="menuitem">Logout
-                                    </button>
-                                </form>
-
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<aside
-       class="fixed top-0 left-0 z-30 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-       aria-label="Sidebar">
-
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+    <div class="sidebar__container">
 
         <ul class="space-y-2 font-medium">
 

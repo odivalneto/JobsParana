@@ -18,7 +18,8 @@
 <body class="bg-gray-100">
 
 {% if request.user.is_authenticated %}
-    {% include 'misc/navbar.html' %}
+    {% include 'components/navbar.html' %}
+    {% include 'components/sidebar.html' %}
 {% endif %}
 
 <main class="main__container">
@@ -32,7 +33,7 @@
 </main>
 
 {% if request.user.is_authenticated %}
-    {% include 'misc/bottom_navigation.html' %}
+    {% include 'components/bottom_navigation.html' %}
 {% endif %}
 
 {% compress js file main %}
