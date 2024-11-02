@@ -1,9 +1,9 @@
-@import "./buttons.css";
-@import "./box.css";
-@import "./forms.css";
-@import "./stepper.css";
-@import "./links.css";
-@import "./tags.css";
+@import "components/buttons.css";
+@import "components/box.css";
+@import "components/forms.css";
+@import "components/stepper.css";
+@import "components/links.css";
+@import "components/tags.css";
 
 @tailwind base;
 @tailwind components;
@@ -13,6 +13,14 @@
     /*MAIN VIEW*/
     .main__container {
         @apply my-16 md:my-10 px-4 pb-10 md:p-9 md:ml-64
+    }
+
+    .main__title {
+        @apply text-3xl font-bold py-4 flex
+    }
+
+    .main__title-search {
+        @apply flex-row md:flex space-y-2 items-center justify-between w-full
     }
 }
 

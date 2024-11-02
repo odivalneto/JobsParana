@@ -2,31 +2,33 @@
 {% load custom_tags %}
 {% block title %}
 
-    <div class="flex-row md:flex space-y-2 items-center justify-between w-full">
+    <div class="main__title-search">
 
         <span>Últimas Vagas</span>
 
         <form class="md:w-2/4" id="search">
 
-            <label for="default-search"
-                   class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Buscar</label>
+            <label for="search-input"
+                   class="input__search-label">Buscar</label>
 
-            <div class="relative">
+            <div class="input__search-container">
 
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                <div class="input__search-icon-container">
+
+                    <svg class="input__search-icon" aria-hidden="true"
                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"></path>
                     </svg>
+
                 </div>
 
                 <input type="search" name="search" id="search-input"
-                       class="block w-full font-normal p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg"
+                       class="input__search"
                        placeholder="Buscar vagas" required/>
 
                 <button type="submit"
-                        class="text-white absolute end-2.5 bottom-2.5 bg-primary-100 hover:bg-primary-hover font-medium rounded-lg text-sm px-4 py-2">
+                        class="btn__search-primary">
                     Buscar
                 </button>
 
@@ -42,7 +44,7 @@
 
 {% block content %}
 
-    <div class="grid md:grid-cols-3 gap-4">
+    <section class="grid md:grid-cols-3 gap-4">
 
         {% for job in page_obj %}
 
@@ -102,6 +104,6 @@
 
         {% endfor %}
 
-    </div>
+    </section>
 
 {% endblock %}
