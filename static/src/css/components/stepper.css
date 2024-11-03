@@ -2,30 +2,22 @@
 @layer components {
 
     .stepper__container-vertical {
-        @apply relative text-gray-500 border-s border-gray-200 dark:border-gray-700 dark:text-gray-400
+        @apply relative text-gray-500 border-s border-gray-200
     }
 
-    .stepper__icon-success {
-        @apply w-3.5 h-3.5 text-green-500
+    .stepper__icon {
+        @apply w-5 h-5
     }
 
-    .stepper__icon-default {
-        @apply w-3.5 h-3.5 text-gray-500
-    }
-
-    .stepper__success {
-        @apply absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white
-    }
-
-    .stepper__default {
-        @apply absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white
+    .stepper__item {
+        @apply absolute flex items-center justify-center w-10 h-10 rounded-full -start-5 ring-4 ring-white
     }
 
     .stepper__item-vertical {
-        @apply mb-10 ms-6
+        @apply mb-12 ms-8
     }
 
     .stepper__item-vertical-last {
-        @apply ms-6
+        @apply ms-8
     }
 }

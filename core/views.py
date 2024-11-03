@@ -152,10 +152,9 @@ class MyApplicationsView(LoginRequiredMixin, ListView):
     context_object_name = 'applications'
     template_name = 'candidates/applications/list.html'
     paginate_by = 20
-    queryset = ApplicationModel.objects.all().order_by('-id')
 
     def get(self, request, *args, **kwargs):
-        applications = self.queryset.filter(curriculum__user_id=kwargs.get('id'))
+        applications = super().get_queryset().filter(curriculum__user_id=kwargs.get('id')).order_by('id')
 
         return render(request, self.template_name, context={'applications': applications})
 

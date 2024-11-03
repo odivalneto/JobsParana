@@ -217,6 +217,7 @@ class ApplicationModel(models.Model):
 
     status_application = {
         'Confirmada' : 'Confirmada',
+        'Em Revisão' : 'Em Revisão',
         'Selecionada' : 'Selecionada',
         'Não Selecionada' : 'Não Selecionada',
         'Finalizada' : 'Finalizada',
