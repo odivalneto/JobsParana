@@ -1,34 +1,41 @@
-window.addEventListener("DOMContentLoaded", (e) => {
+window.addEventListener("DOMContentLoaded", () => {
     const status = document.querySelector("#stepper_id").dataset.stepperStatus;
     const step_span = document.querySelectorAll("#stepper_id span")
+    const button = document.querySelector("#remove_application")
 
-    const span_ = () => {
-
+    const span_css = () => {
+        return ("bg-green-100", "text-green-500")
     }
 
     const index = () => {
         switch (status) {
             case "Confirmada":
-                return "1";
+                return "step-1";
             case "Em Revisão":
-                return "2";
+                return "step-2";
             case "Selecionada":
-                return "3";
+                return "step-3";
             case "Finalizada":
-                return "4";
+                return "step-4";
             default:
-                return "4";
+                return "step-4";
         }
+    }
+
+    if (index() !== "step-1") {
+        button.disabled = true;
+        button.classList.remove("btn-primary");
+        button.classList.add("btn-disabled");
     }
 
     step_span.forEach(step => {
 
         if (step.id <= index()) {
             step.classList.remove("bg-gray-100", "text-gray-500")
-            step.classList.add("bg-green-200", "text-green-500")
+            step.classList.add("bg-green-100", "text-green-500")
         }
 
-        if (step.id === index() && step.id !== "4") {
+        if (step.id === index() && step.id !== "step-4") {
             step.classList.add("animate-bounce")
         }
 

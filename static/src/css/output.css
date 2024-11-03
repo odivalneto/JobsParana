@@ -1084,6 +1084,17 @@ input:checked + .toggle-bg {
   background-color: rgb(7 126 202 / var(--tw-bg-opacity));
 }
 
+.btn-disabled {
+  width: 100%;
+  cursor: not-allowed;
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+  padding: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 /*BUTTON MODAL*/
 
 .btn-primary-modal {
@@ -2518,6 +2529,11 @@ input:checked + .toggle-bg {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
+.bg-gray-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -2547,6 +2563,11 @@ input:checked + .toggle-bg {
   background-color: rgb(188 240 218 / var(--tw-bg-opacity));
 }
 
+.bg-green-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 250 247 / var(--tw-bg-opacity));
+}
+
 .bg-primary-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(7 108 169 / var(--tw-bg-opacity));
@@ -2555,6 +2576,11 @@ input:checked + .toggle-bg {
 .bg-red-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 232 232 / var(--tw-bg-opacity));
+}
+
+.bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 82 82 / var(--tw-bg-opacity));
 }
 
 .bg-transparent {
@@ -2573,11 +2599,6 @@ input:checked + .toggle-bg {
 .bg-yellow-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 246 178 / var(--tw-bg-opacity));
-}
-
-.bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(240 82 82 / var(--tw-bg-opacity));
 }
 
 .p-0 {
@@ -3049,45 +3070,6 @@ input:checked + .toggle-bg {
 .focus\:ring-gray-200:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(-25%);
-      animation-timing-function: cubic-bezier(0.8,0,1,1);
-    }
-
-    50% {
-      transform: none;
-      animation-timing-function: cubic-bezier(0,0,0.2,1);
-    }
-  }
-
-  .motion-safe\:animate-bounce {
-    animation: bounce 1s infinite;
-  }
-
-  @keyframes ping {
-    75%, 100% {
-      transform: scale(2);
-      opacity: 0;
-    }
-  }
-
-  .motion-safe\:animate-ping {
-    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-
-  @keyframes pulse {
-    50% {
-      opacity: .5;
-    }
-  }
-
-  .motion-safe\:animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
 }
 
 .dark\:border-blue-500:is(.dark *) {

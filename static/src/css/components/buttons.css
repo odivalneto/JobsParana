@@ -8,6 +8,10 @@
         @apply hover:bg-primary-hover transition duration-300
     }
 
+    .btn-disabled {
+        @apply bg-gray-200 w-full text-white p-2 rounded-lg cursor-not-allowed
+    }
+
     /*BUTTON MODAL*/
     .btn-primary-modal {
         @apply px-5 py-2.5 text-white bg-primary-100 font-medium rounded-lg text-sm items-center

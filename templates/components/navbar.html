@@ -61,14 +61,10 @@
                             </li>
 
                             <li>
-                                <form method="post" action="{% url 'logout' %}">
-                                    {% csrf_token %}
-                                    <button type="submit"
-                                            class="navbar__dropdown-link"
-                                            role="menuitem">Logout
-                                    </button>
-                                </form>
-
+                                <button type="button"
+                                        class="navbar__dropdown-link"
+                                        role="menuitem" onclick="logout()">Logout
+                                </button>
                             </li>
 
                         </ul>
