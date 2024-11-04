@@ -28,4 +28,20 @@
     .box__footer-date {
         @apply text-sm text-gray-400 bottom-2 absolute
     }
+
+    .box__information {
+        @apply grid gap-0.5 text-sm
+    }
+
+    .box__information-label {
+        @apply text-gray-800 leading-tight font-semibold
+    }
+
+    .box__information-content {
+        @apply p-2 rounded-lg border border-gray-100 bg-gray-50
+    }
+
+    .box__divider {
+        @apply border-t-[1px] border-gray-200 w-full py-2
+    }
 }
