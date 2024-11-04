@@ -6,6 +6,7 @@
 @import "components/tags.css";
 @import "components/navbar.css";
 @import "components/sidebar.css";
+@import "components/bottom_navigation.css";
 
 @tailwind base;
 @tailwind components;

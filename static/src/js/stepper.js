@@ -1,11 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
     const status = document.querySelector("#stepper_id").dataset.stepperStatus;
-    const step_span = document.querySelectorAll("#stepper_id span")
+    const steps = document.querySelectorAll("#stepper_id span")
     const button = document.querySelector("#remove_application")
-
-    const span_css = () => {
-        return ("bg-green-100", "text-green-500")
-    }
 
     const index = () => {
         switch (status) {
@@ -22,23 +18,32 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    if (index() !== "step-1") {
-        button.disabled = true;
-        button.classList.remove("btn-primary");
-        button.classList.add("btn-disabled");
+    if (index() === "step-1") {
+        button.disabled = false;
+        button.classList.remove("btn-disabled");
+        button.classList.add("btn-primary");
     }
 
-    step_span.forEach(step => {
+    steps.forEach(step => {
 
         if (step.id <= index()) {
             step.classList.remove("bg-gray-100", "text-gray-500")
             step.classList.add("bg-green-100", "text-green-500")
         }
-
-        if (step.id === index() && step.id !== "step-4") {
-            step.classList.add("animate-bounce")
-        }
-
+        
     })
 
 })
+
+async function remove_application() {
+    const url = window.location.pathname;
+    console.log(url);
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+    }).then(response => {
+        response.ok ? window.location.reload() : null
+    })
+}

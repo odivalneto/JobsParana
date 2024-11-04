@@ -164,6 +164,10 @@ class MyApplicationDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'application'
     template_name = 'candidates/applications/detail.html'
 
+    def post(self, request, **kwargs):
+        print(kwargs)
+        return self.get(request, **kwargs)
+
 
 # MARK: - ACCOUNTS
 def login(request):

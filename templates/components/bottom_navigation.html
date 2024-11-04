@@ -1,10 +1,11 @@
 {% load custom_tags %}
 
-<div class="block md:hidden fixed bottom-0 left-0 z-40 w-full h-16 bg-white border-t border-gray-200">
-    <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
+<div class="bottom-navigation">
+    
+    <div class="bottom-navigation__container">
 
         <a href="{% url 'core:jobs' %}"
-           class="{% path_name_css request.path 'jobs' default='text-gray-400' selected='text-primary-100' %} inline-flex flex-col space-y-1 items-center justify-center px-5 dark:hover:bg-gray-800 group">
+           class="{% path_name_css request.path 'jobs' default='text-gray-400' selected='text-primary-100' %} bottom-navigation__link ">
 
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                  width="26" height="26" fill="currentColor" viewBox="0 0 24 24">
@@ -17,7 +18,7 @@
         </a>
 
         <a href="{% url 'core:applications' request.user.id %}"
-           class="{% path_name_css request.path 'applications' default='text-gray-400' selected='text-primary-100 ' %} inline-flex flex-col space-y-1 items-center justify-center px-5 dark:hover:bg-gray-800 group">
+           class="{% path_name_css request.path 'applications' default='text-gray-400' selected='text-primary-100 ' %} bottom-navigation__link">
 
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                  width="26" height="26" fill="currentColor" viewBox="0 0 24 24">
@@ -29,7 +30,7 @@
         </a>
 
         <a href="{% url 'core:curriculum' %}"
-           class="{% path_name_css request.path 'curriculum' default='text-gray-400' selected='text-primary-100 ' %} inline-flex flex-col space-y-1 items-center justify-center px-5 dark:hover:bg-gray-800 group">
+           class="{% path_name_css request.path 'curriculum' default='text-gray-400' selected='text-primary-100 ' %} bottom-navigation__link">
 
             <svg aria-hidden="true"
                  xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
@@ -43,7 +44,7 @@
         </a>
 
         <a href="{% url 'core:search' %}"
-           class=" {% path_name_css request.path 'search' default='text-gray-400' selected='text-primary-100 ' %} inline-flex flex-col space-y-1 items-center justify-center px-5 dark:hover:bg-gray-800 group">
+           class=" {% path_name_css request.path 'search' default='text-gray-400' selected='text-primary-100 ' %} bottom-navigation__link">
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                  width="26" height="26" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2"

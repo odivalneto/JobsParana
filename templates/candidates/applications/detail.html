@@ -26,7 +26,7 @@
                         </span>
 
                         <h3 class="font-medium leading-tight">Confirmada</h3>
-                        <p class="text-sm">Recebemos sua candidatura com sucesso</p>
+                        <p class="text-sm">Recebemos sua candidatura com sucesso, aguarde as próximas etapas do processo.</p>
 
                     </li>
 
@@ -40,7 +40,7 @@
                         </span>
 
                         <h3 class="font-medium leading-tight">Revisão</h3>
-                        <p class="text-sm">Nessa etapa iremos revisar seu currículo</p>
+                        <p class="text-sm">Nessa etapa a equipe irá revisar e validar seu currículo.</p>
 
                     </li>
 
@@ -54,7 +54,7 @@
                          </span>
 
                         <h3 class="font-medium leading-tight">Entrevista</h3>
-                        <p class="text-sm">Step details here</p>
+                        <p class="text-sm">Caso seja selecionado entraremos em contato para conhecer melhor você.</p>
                     </li>
 
                     <li class="stepper__item-vertical-last">
@@ -79,15 +79,19 @@
                 <span>Candidatou-se em {{ application.application_date }}</span>
             </div>
 
-            <button class="btn-primary" id="remove_application">
+            <button type="button" class="btn-disabled" id="remove_application" data-modal-toggle="remove_modal" data-modal-target="remove_modal" disabled>
                 Remover Candidatura
             </button>
 
         </div>
 
     </section>
+    
+    {% alert_modal id_modal='remove_modal' message='Deseja cancelar sua candidatura?' type_button='submit'%}
 
 {% endblock %}
+
+
 
 {% block js %}
     <script src="{% static 'src/js/stepper.js' %}"></script>
