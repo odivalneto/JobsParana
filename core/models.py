@@ -218,9 +218,9 @@ class ApplicationModel(models.Model):
     status_application = {
         'Confirmada' : 'Confirmada',
         'Em Revisão' : 'Em Revisão',
+        'Entrevista' : 'Entrevista',
         'Selecionada' : 'Selecionada',
         'Não Selecionada' : 'Não Selecionada',
-        'Finalizada' : 'Finalizada',
     }
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

@@ -9,13 +9,21 @@ window.addEventListener("DOMContentLoaded", () => {
                 return "step-1";
             case "Em Revisão":
                 return "step-2";
-            case "Selecionada":
+            case "Entrevista":
                 return "step-3";
-            case "Finalizada":
+            case "Selecionada":
                 return "step-4";
             default:
-                return "step-4";
+                return "step-null";
         }
+    }
+
+    const Direction = {
+        Up: "up",
+        Down: "down",
+        Left: "left",
+        Right: "right",
+        DownLeft: "downLeft",
     }
 
     if (index() === "step-1") {
@@ -34,16 +42,3 @@ window.addEventListener("DOMContentLoaded", () => {
     })
 
 })
-
-async function remove_application() {
-    const url = window.location.pathname;
-    console.log(url);
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'X-CSRFToken': getCookie('csrftoken')
-        }
-    }).then(response => {
-        response.ok ? window.location.reload() : null
-    })
-}

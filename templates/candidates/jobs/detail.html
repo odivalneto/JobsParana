@@ -15,11 +15,11 @@
             <div class="text-red-600 font-semibold ml-auto space-x-1 text-sm">
 
                 {% if job.is_pcd %}
-                    <span class="px-2 py-0.5 bg-red-100 rounded-full">Exclusivo PCD</span>
+                    <span class="tag-danger">Exclusivo PCD</span>
                 {% endif %}
 
                 {% if job.is_urgent %}
-                    <span class="px-2 py-0.5 bg-red-100 rounded-full">Urgente</span>
+                    <span class="tag-danger">Urgente</span>
                 {% endif %}
 
             </div>
@@ -131,7 +131,7 @@
 
             {% if is_already %}
 
-                <span class="px-4 py-1.5 bg-green-100 text-green-600 rounded-full font-semibold text-center">Você já se candidatou</span>
+                <span class="tag-success-larger">Você já se candidatou</span>
 
             {% else %}
 

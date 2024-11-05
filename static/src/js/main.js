@@ -17,3 +17,20 @@ async function logout() {
     })
 }
 
+// REMOVE APPLICATION
+async function remove_application() {
+    const url = window.location.pathname;
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({'value':'remove_application'})
+    }).then(response => {
+        response.json().then(data => {
+            if (data['success']) {
+                window.location.replace(data['redirectTo']);
+            }
+        })
+    })
+}

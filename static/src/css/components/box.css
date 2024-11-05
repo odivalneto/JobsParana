@@ -30,7 +30,7 @@
     }
 
     .box__information {
-        @apply grid gap-0.5 text-sm
+        @apply grid gap-0.5
     }
 
     .box__information-label {

@@ -1,4 +1,6 @@
+import json
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm, JobsForm
@@ -62,6 +64,7 @@ class JobListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         if self.request.method == 'GET':
             return super().get_queryset().filter(title__icontains=self.request.GET.get('search', ''), is_available=True)
+
 
 class JobDetailView(LoginRequiredMixin, DetailView):
     model = JobModel
@@ -154,7 +157,7 @@ class MyApplicationsView(LoginRequiredMixin, ListView):
     paginate_by = 20
 
     def get(self, request, *args, **kwargs):
-        applications = super().get_queryset().filter(curriculum__user_id=kwargs.get('id')).order_by('id')
+        applications = super().get_queryset().filter(curriculum__user_id=kwargs.get('id')).order_by('-application_date')
 
         return render(request, self.template_name, context={'applications': applications})
 
@@ -163,10 +166,15 @@ class MyApplicationDetailView(LoginRequiredMixin, DetailView):
     model = ApplicationModel
     context_object_name = 'application'
     template_name = 'candidates/applications/detail.html'
+    success_url = '/applications/'
 
-    def post(self, request, **kwargs):
-        print(kwargs)
-        return self.get(request, **kwargs)
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.method == 'POST':
+            data = json.loads(request.body)
+            if data['value'] == "remove_application":
+                self.get_object().delete()
+
+        return JsonResponse({'success': True, 'redirectTo':str(self.success_url) + str(request.user.pk)})
 
 
 # MARK: - ACCOUNTS
