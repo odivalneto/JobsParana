@@ -28,7 +28,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (step.id <= index()) {
             step.classList.remove("stepper__item-default")
-            step.classList.add("stepper__item-success");
+            step.classList.add(
+                status !== "Não Selecionada" ? "stepper__item-success" : "stepper__item-danger"
+            );
         }
 
     })

@@ -5,7 +5,7 @@ class ApiService {
     }
 
     async get(endpoint, headers = {}, params = {}) {
-        return await fetch(`${this.baseURL}${endpoint}`, {
+        return await fetch(endpoint, {
             method: 'GET',
             headers: headers,
             body: params,
