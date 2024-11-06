@@ -35,8 +35,8 @@ window.addEventListener("DOMContentLoaded", () => {
     steps.forEach(step => {
 
         if (step.id <= index()) {
-            step.classList.remove("bg-gray-100", "text-gray-500")
-            step.classList.add("bg-green-100", "text-green-500")
+            step.classList.remove("stepper__item-default")
+            step.classList.add("stepper__item-success");
         }
         
     })
