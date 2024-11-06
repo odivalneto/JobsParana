@@ -70,6 +70,7 @@ class JobDetailView(LoginRequiredMixin, DetailView):
     model = JobModel
     context_object_name = 'job'
     template_name = 'candidates/jobs/detail.html'
+    success_url = '/applications/'
 
     def get_context_data(self, **kwargs):
         job = self.get_object()
@@ -85,10 +86,17 @@ class JobDetailView(LoginRequiredMixin, DetailView):
         return context
 
     def post(self, *args, **kwargs):
-        form = ApplicationForm()
-        form.create_apply(user=self.request.user, job=self.get_object())
+        context = {}
+        try:
+            form = ApplicationForm()
+            form.create_apply(user=self.request.user, job=self.get_object())
+            context['statusCode'] = 200
+            context['message'] = 'Application Created'
+            context['redirectToUrl'] = f'{self.success_url}{self.request.user.pk}'
+        except ValueError:
+            pass
 
-        return redirect('core:applications', self.request.user.id)
+        return JsonResponse(context)
 
 
 # MARK: - CURRICULUM

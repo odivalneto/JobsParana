@@ -2,6 +2,29 @@ import {ApiService} from "./services.js";
 
 const apiService = new ApiService("localhost:8000")
 
+// BUTTONS ACTIONS
+const remove_action = document.querySelector('#remove_action');
+const confirm_action = document.querySelector('#confirm_action')
+const logout_action = document.querySelector('#logout_action');
+
+if (confirm_action) {
+    confirm_action.onclick = () => {
+        confirm_application()
+    }
+}
+
+if (remove_action) {
+    remove_action.onclick = () => {
+        remove_application()
+    }
+}
+
+if (logout_action) {
+    logout_action.onclick = () => {
+        logout()
+    }
+}
+
 // GET COOKIES
 function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -10,7 +33,7 @@ function getCookie(name) {
 }
 
 // LOGOUT
-async function logout() {
+function logout() {
     fetch('/accounts/logout/', {
         method: 'POST',
         headers: {
@@ -24,9 +47,7 @@ async function logout() {
 // REMOVE JOB APPLICATION
 function remove_application() {
     const url = window.location.pathname;
-
     try {
-
         apiService.delete(url, {
             'X-CSRFToken': getCookie('csrftoken'),
             'Accept': 'application/json',
@@ -37,7 +58,6 @@ function remove_application() {
         }).catch(error => {
             console.log(error)
         })
-
     } catch (error) {
         console.error('Error deleting application', error)
     }
@@ -53,25 +73,10 @@ function confirm_application() {
         }, {
             'application': 'success'
         }).then(data => {
-            console.log(data)
+            data['statusCode'] === 200 ? window.location.replace(data['redirectToUrl']) : null;
         })
     } catch (error) {
         console.error('Error add application', error)
     }
 
-}
-
-const remove_action = document.querySelector('#remove_action');
-const confirm_action = document.querySelector('#confirm_action')
-
-if (confirm_action) {
-    confirm_action.onclick = () => {
-        confirm_application()
-    }
-}
-
-if (remove_action) {
-    remove_action.onclick = () => {
-        remove_application()
-    }
 }
