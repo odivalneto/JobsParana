@@ -169,15 +169,22 @@ class MyApplicationDetailView(LoginRequiredMixin, DetailView):
     success_url = '/applications/'
 
     def delete(self, request, *args, **kwargs):
+
+        context = {}
+
         if request.user.is_authenticated and request.method == 'DELETE':
             try:
                 data = json.loads(request.body)
                 if data['value'] == "remove_application":
                     self.get_object().delete()
-                    return JsonResponse(
-                        {'statusCode': 200, 'redirectToUrl': f'{self.success_url}{self.request.user.pk}'})
+                    context['statusCode'] = 200
+                    context['redirectToUrl'] = f'{self.success_url}{self.request.user.pk}'
+
             except Exception as e:
-                return JsonResponse({'statusCode': 404, 'error': str(e)})
+                context['statusCode'] = 500
+                context['error'] = str(e)
+
+        return JsonResponse(context)
 
 
 # MARK: - ACCOUNTS
