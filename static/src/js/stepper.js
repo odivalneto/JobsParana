@@ -18,14 +18,6 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    const Direction = {
-        Up: "up",
-        Down: "down",
-        Left: "left",
-        Right: "right",
-        DownLeft: "downLeft",
-    }
-
     if (index() === "step-1") {
         button.disabled = false;
         button.classList.remove("btn-disabled");
@@ -38,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
             step.classList.remove("stepper__item-default")
             step.classList.add("stepper__item-success");
         }
-        
+
     })
 
 })

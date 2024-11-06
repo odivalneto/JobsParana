@@ -131,12 +131,11 @@
 
             {% if is_already %}
 
-                <span class="tag-success-larger">Você já se candidatou</span>
+                <span class="tag-success-large">Você já se candidatou</span>
 
             {% else %}
 
-                <button data-modal-target="alert_modal" data-modal-toggle="alert_modal"
-                        class="btn-primary"
+                <button data-modal-target="confirm_modal" data-modal-toggle="confirm_modal" class="btn-primary"
                         type="button">
                     Quero me candidatar
                 </button>
@@ -151,7 +150,7 @@
 
     {% if not is_already %}
 
-        {% alert_modal id_modal='alert_modal' message='Confirmar candidatura?' type_button='submit' %}
+        {% alert_modal id_modal='confirm_modal' message='Confirmar candidatura?' action_id='confirm_action' %}
 
     {% endif %}
 

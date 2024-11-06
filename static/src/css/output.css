@@ -1529,7 +1529,7 @@ input:checked + .toggle-bg {
   color: rgb(224 36 36 / var(--tw-text-opacity));
 }
 
-.tag-success-larger {
+.tag-success-large {
   border-radius: 9999px;
   --tw-bg-opacity: 1;
   background-color: rgb(222 247 236 / var(--tw-bg-opacity));

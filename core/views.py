@@ -168,13 +168,16 @@ class MyApplicationDetailView(LoginRequiredMixin, DetailView):
     template_name = 'candidates/applications/detail.html'
     success_url = '/applications/'
 
-    def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated and request.method == 'POST':
-            data = json.loads(request.body)
-            if data['value'] == "remove_application":
-                self.get_object().delete()
-
-        return JsonResponse({'success': True, 'redirectTo':str(self.success_url) + str(request.user.pk)})
+    def delete(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.method == 'DELETE':
+            try:
+                data = json.loads(request.body)
+                if data['value'] == "remove_application":
+                    self.get_object().delete()
+                    return JsonResponse(
+                        {'statusCode': 200, 'redirectToUrl': f'{self.success_url}{self.request.user.pk}'})
+            except Exception as e:
+                return JsonResponse({'statusCode': 404, 'error': str(e)})
 
 
 # MARK: - ACCOUNTS
