@@ -5,7 +5,11 @@
     }
 
     .input-primary:focus {
-        @apply focus:ring-primary-100 border-primary-100
+        @apply focus:ring-primary-100 border-primary-100 transition duration-200
+    }
+
+    .input-primary:not(:focus){
+        @apply border-gray-300 transition duration-200
     }
 
     .input-primary::placeholder {

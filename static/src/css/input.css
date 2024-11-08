@@ -8,6 +8,7 @@
 @import "components/sidebar.css";
 @import "components/bottom_navigation.css";
 @import "components/modal.css";
+@import "components/card.css";
 
 @tailwind base;
 @tailwind components;

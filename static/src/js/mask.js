@@ -1,0 +1,32 @@
+const mask_date = document.querySelector('#id_birth_date')
+const mask_phone = document.querySelector('#id_phone_number')
+
+// MASK DATE
+function maskDate(input) {
+    let value = input.value.replace(/\D/g, "");
+    value = value.replace(/(\d{2})(\d)/, "$1/$2");
+    value = value.replace(/(\d{2})(\d)/, "$1/$2");
+    input.value = value;
+}
+
+// MASK PHONE NUMBER
+function maskPhone(input) {
+    let value = input.value.replace(/\D/g, "");
+    value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
+    value = value.replace(/(\d{5})(\d)/, "$1-$2");
+    input.value = value;
+}
+
+if (mask_date) {
+    mask_date.oninput = function () {
+        maskDate(this);
+    }
+}
+
+if (mask_phone) {
+    mask_phone.oninput = function () {
+        maskPhone(this);
+    }
+}
+
+

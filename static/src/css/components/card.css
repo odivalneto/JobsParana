@@ -1,0 +1,29 @@
+@layer components {
+    .card {
+        @apply block max-w-sm p-6 bg-white border rounded-lg shadow-md
+    }
+
+    .card__content {
+        @apply grid gap-4
+    }
+
+    .card__header {
+        @apply flex justify-between
+    }
+
+    .card__title {
+        @apply text-2xl font-bold tracking-tight text-gray-900
+    }
+
+    .card__description {
+        @apply text-start
+    }
+
+    .card__image {
+        @apply rounded-full
+    }
+
+    .card__footer {
+        @apply flex flex-row w-full
+    }
+}

@@ -1,7 +1,7 @@
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm, JobsForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel, QualificationModel, AddressModel
@@ -104,23 +104,34 @@ class MyCurriculumView(LoginRequiredMixin, TemplateView):
     template_name = 'candidates/profile/index.html'
 
 
-class MyProfileDetailView(LoginRequiredMixin, DetailView):
-    model = UserModel
+class MyProfileDetailView(LoginRequiredMixin, TemplateView):
     template_name = 'candidates/profile/profile.html'
     success_url = 'core:profile'
 
     def get_context_data(self, **kwargs):
-        form = ProfileForm(instance=self.get_object())
+        form_profile = ProfileForm(instance=self.request.user)
+        form_curriculum = CurriculumForm(instance=CurriculumModel.objects.get_or_create(user_id=kwargs['pk'])[0])
+
         context = {
-            'form': form
+            'form_profile': form_profile,
+            'form_curriculum': form_curriculum
         }
+
         return context
 
-    def post(self, *args, **kwargs):
-        form = ProfileForm(self.request.POST, instance=self.get_object())
-        if form.is_valid():
-            form.save()
-        return self.get(*args, **kwargs)
+    def post(self, request, *args, **kwargs):
+
+        if request.method == 'POST' and self.request.user.is_authenticated:
+
+            form_profile = ProfileForm(self.request.POST, instance=self.request.user)
+            form_curriculum = CurriculumForm(self.request.POST,
+                                             instance=CurriculumModel.objects.get_or_create(user_id=kwargs['pk'])[0])
+
+            if form_profile.is_valid() and form_curriculum.is_valid():
+                form_profile.save()
+                form_curriculum.save()
+
+        return self.get(request, *args, **kwargs)
 
 
 class MyAddressDetailView(LoginRequiredMixin, DetailView):

@@ -16,7 +16,7 @@ Sistema de cadastramento e divulgação para vagas de trabalhos do estado do Par
 - [Funcionalidades Internas](#funcionalidades-interna)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Docker Container](#docker-container)
-- [Django Run](#django-run)
+- [Django Server](#django-run)
 
 ## Funcionalidades Externa
 
@@ -64,7 +64,7 @@ Para rodar o projeto localmente, siga os passos abaixo:
    ```bash
    docker-compose -p jobsparana up -d
    
-## Django Run
+## Django Server
 
 1. Adicione uma **SECRET_KEY** em ``settings.py``:
    >https://djecrety.ir

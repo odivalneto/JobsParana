@@ -7,8 +7,10 @@ class UserForm(forms.ModelForm):
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'placeholder': 'email@dominio.com'}))
     full_name = forms.CharField(label='Nome Completo',
                                 widget=forms.TextInput(attrs={'placeholder': 'ex. Maria Aparecida'}))
-    birth_date = forms.DateField(label='Aniversário', widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA'}))
-    phone_number = forms.CharField(label='Celular', widget=forms.TextInput(attrs={'placeholder': '(__) _ ____-____'}))
+    birth_date = forms.DateField(label='Aniversário',
+                                 widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA', 'maxlength': 10}))
+    phone_number = forms.CharField(label='Celular',
+                                   widget=forms.TextInput(attrs={'placeholder': '(__) _____-____', 'maxlength': 15}))
     password = forms.CharField(label='Senha', widget=forms.PasswordInput)
 
     class Meta:
@@ -31,9 +33,9 @@ class ProfileForm(forms.ModelForm):
     email = forms.EmailField(label='Email', widget=forms.TextInput(attrs={'placeholder': 'email@dominio.com'}))
     full_name = forms.CharField(label='Nome Completo', required=True)
     birth_date = forms.DateField(label='Aniversário', required=False,
-                                 widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA'}))
+                                 widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA', 'maxlength': 10}))
     phone_number = forms.CharField(label='Celular', required=False,
-                                   widget=forms.TextInput(attrs={'placeholder': '(__) _ ____-____'}))
+                                   widget=forms.TextInput(attrs={'placeholder': '(__) _____-____', 'maxlength': 15}))
 
     class Meta:
         model = UserModel
@@ -84,7 +86,7 @@ class CurriculumForm(forms.ModelForm):
 
     class Meta:
         model = CurriculumModel
-        fields = ['about', 'education', 'level']
+        fields = ['education', 'level', 'about']
 
 
 class ApplicationForm(forms.ModelForm):
@@ -96,8 +98,12 @@ class ApplicationForm(forms.ModelForm):
     def create_apply(**kwargs):
         apply = ApplicationModel()
         apply.job = kwargs['job']
+        apply.job.count_applications += 1
         apply.curriculum = CurriculumModel.objects.get_or_create(user=kwargs['user'])[0]
         apply.status = 'Confirmada'
+
+        # SAVE OBJECTS
+        apply.job.save()
         apply.save()
 
 

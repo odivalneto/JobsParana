@@ -1,28 +1,36 @@
 {% extends '_base.html' %}
 {% block title %} Dados Pessoais {% endblock %}
 {% load custom_tags %}
+{% load static %}
 
 {% block content %}
-    
-    <section class="bg-white p-4 shadow-md rounded-lg">
-    
-        <div class="container max-w-lg mx-auto">
 
-            <form method="post" class="grid gap-6">
+    <section class="bg-white p-4 shadow-md rounded-lg">
+
+        <div class="container mx-auto">
+
+            <form method="post" class="grid md:grid-cols-2 gap-2 md:gap-12">
                 {% csrf_token %}
 
-                <div class="grid gap-4">
-                    {% form_flowbite form %}
-                </div>
+                {% form_flowbite form_profile %}
+                {% form_flowbite form_curriculum %}
 
-                <button type="submit" class="btn-primary">
-                    Salvar
-                </button>
+                <div class="max-w-xs relative">
+
+                    <button type="submit" class="btn-primary bottom-0 absolute">
+                        Salvar
+                    </button>
+
+                </div>
 
             </form>
 
         </div>
 
     </section>
-    
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'src/js/mask.js' %}"></script>
 {% endblock %}

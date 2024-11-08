@@ -1270,11 +1270,26 @@ input:checked + .toggle-bg {
 .input-primary:focus {
   --tw-border-opacity: 1;
   border-color: rgb(7 108 169 / var(--tw-border-opacity));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
 }
 
 .input-primary:focus:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(7 108 169 / var(--tw-ring-opacity));
+}
+
+.input-primary:not(:focus) {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
 }
 
 .input-primary::-moz-placeholder::placeholder {
@@ -2336,12 +2351,21 @@ input:checked + .toggle-bg {
   max-width: 42rem;
 }
 
+.max-w-3 {
+  max-width: 0.75rem;
+}
+
 .max-w-36 {
   max-width: 9rem;
 }
 
 .max-w-3xl {
   max-width: 48rem;
+}
+
+.max-w-fit {
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 
 .max-w-lg {
@@ -2356,6 +2380,14 @@ input:checked + .toggle-bg {
   max-width: 1024px;
 }
 
+.max-w-screen-sm {
+  max-width: 640px;
+}
+
+.max-w-screen-xl {
+  max-width: 1280px;
+}
+
 .max-w-sm {
   max-width: 24rem;
 }
@@ -2364,12 +2396,8 @@ input:checked + .toggle-bg {
   max-width: 36rem;
 }
 
-.max-w-screen-sm {
-  max-width: 640px;
-}
-
-.max-w-screen-xl {
-  max-width: 1280px;
+.max-w-xs {
+  max-width: 20rem;
 }
 
 .flex-1 {
@@ -2553,6 +2581,10 @@ input:checked + .toggle-bg {
 
 .gap-1\.5 {
   gap: 0.375rem;
+}
+
+.gap-12 {
+  gap: 3rem;
 }
 
 .gap-2 {
@@ -2924,6 +2956,11 @@ input:checked + .toggle-bg {
   padding-right: 1.25rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .py-0 {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -2942,6 +2979,11 @@ input:checked + .toggle-bg {
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .py-2 {
@@ -2972,16 +3014,6 @@ input:checked + .toggle-bg {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.py-16 {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
 }
 
 .pb-10 {
@@ -3020,6 +3052,10 @@ input:checked + .toggle-bg {
   vertical-align: baseline;
 }
 
+.align-bottom {
+  vertical-align: bottom;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -3028,6 +3064,21 @@ input:checked + .toggle-bg {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1;
 }
 
 .text-base {
@@ -3055,21 +3106,6 @@ input:checked + .toggle-bg {
   line-height: 1rem;
 }
 
-.text-7xl {
-  font-size: 4.5rem;
-  line-height: 1;
-}
-
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
-.text-9xl {
-  font-size: 8rem;
-  line-height: 1;
-}
-
 .font-\[1000\] {
   font-weight: 1000;
 }
@@ -3080,6 +3116,10 @@ input:checked + .toggle-bg {
 
 .font-bold {
   font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
 }
 
 .font-light {
@@ -3096,10 +3136,6 @@ input:checked + .toggle-bg {
 
 .font-semibold {
   font-weight: 600;
-}
-
-.font-extrabold {
-  font-weight: 800;
 }
 
 .uppercase {
@@ -3553,6 +3589,10 @@ input:checked + .toggle-bg {
 
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\:gap-12 {
+    gap: 3rem;
   }
 
   .md\:space-y-6 > :not([hidden]) ~ :not([hidden]) {
