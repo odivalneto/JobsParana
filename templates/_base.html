@@ -35,6 +35,7 @@
 
 {% if request.user.is_authenticated %}
     {% include 'components/bottom_navigation.html' %}
+    {% include 'components/footer.html' %}
 {% endif %}
 
 {% compress js file main %}

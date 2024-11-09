@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
 
-</body>
-</html>
+<footer class="footer footer__fixed-bottom">
+
+    <div class="footer__container">
+
+        <div>
+            <div class="flex items-center mx-auto">
+                <img src="{% static 'imgs/brasao_parana.svg' %}" class="h-8 me-3" alt="FlowBite Logo"/>
+                <div class="grid">
+                    <span class="font-black whitespace-nowrap text-sm">PARANÁ</span>
+                    <span class="text-xs dark:text-white border-t-[1px] border-green-400">Governo do Estado</span>
+                </div>
+            </div>
+        </div>
+
+        <ul class="footer__links-container">
+            <li>
+                <a href="#" class="footer__link">Sobre</a>
+            </li>
+            <li>
+                <a href="#" class="footer__link">Privacidade</a>
+            </li>
+            <li>
+                <a href="#" class="footer__link">Licenças</a>
+            </li>
+            <li>
+                <a href="#" class="footer__link">Contatos</a>
+            </li>
+        </ul>
+
+    </div>
+
+
+</footer>
+
+

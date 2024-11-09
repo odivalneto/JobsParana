@@ -1,0 +1,25 @@
+@layer components {
+    .footer {
+        @apply hidden z-20 bg-white border-t border-gray-200 md:block
+    }
+
+    .footer__fixed-bottom {
+        @apply fixed bottom-0 left-64 right-0
+    }
+
+    .footer__container {
+        @apply flex justify-between p-4 items-center
+    }
+
+    .footer__links-container {
+        @apply flex flex-row space-x-4
+    }
+
+    .footer__link {
+        @apply text-sm font-medium text-gray-500
+    }
+
+    .footer__link:hover {
+        @apply hover:underline
+    }
+}

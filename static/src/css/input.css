@@ -9,6 +9,7 @@
 @import "components/bottom_navigation.css";
 @import "components/modal.css";
 @import "components/card.css";
+@import "components/footer.css";
 
 @tailwind base;
 @tailwind components;
@@ -18,7 +19,7 @@
 @layer components {
 
     .main__container {
-        @apply my-16 md:my-10 px-4 pb-10 md:p-9 md:ml-64
+        @apply my-16 md:my-10 px-4 pb-10 md:pt-9 md:pb-14 md:px-10 md:ml-64
     }
 
     .main__title {

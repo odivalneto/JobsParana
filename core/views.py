@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, FormView
-from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm, JobsForm
+from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel, QualificationModel, AddressModel
 
 
