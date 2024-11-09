@@ -43,10 +43,10 @@ class ProfileForm(forms.ModelForm):
 
 
 class AddressForm(forms.ModelForm):
-    zipcode = forms.CharField(label='CEP', widget=forms.TextInput(attrs={'placeholder': '00000-000'}))
+    zipcode = forms.CharField(label='CEP', widget=forms.TextInput(attrs={'placeholder': '00000-000', 'maxlength': 9}))
     address = forms.CharField(label='Endereço')
-    number = forms.CharField(label='Número')
-    complement = forms.CharField(label='Complemento')
+    number = forms.CharField(label='Número', required=False)
+    complement = forms.CharField(label='Complemento', required=False)
     region = forms.CharField(label='Bairro')
     city = forms.CharField(label='Cidade')
     state = forms.CharField(label='Estado')
@@ -55,6 +55,7 @@ class AddressForm(forms.ModelForm):
     class Meta:
         model = AddressModel
         fields = ['zipcode', 'address', 'number', 'complement', 'region', 'city', 'state', 'country']
+
 
 
 class JobsForm(forms.ModelForm):
