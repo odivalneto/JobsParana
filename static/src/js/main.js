@@ -92,16 +92,16 @@ function confirm_application() {
 
 
 if (mask_zipcode) {
-    mask_zipcode.oninput = function () {
+    mask_zipcode.oninput = async function () {
         maskZipcode(this)
         if (mask_zipcode.value.length === 9) {
-            get_address_zipcode(mask_zipcode.value)
+            await get_address_zipcode(mask_zipcode.value)
         }
     }
 }
 
 // GET ADDRESS BY ZIPCODE
-function get_address_zipcode(zipcode) {
+async function get_address_zipcode(zipcode) {
     const baseURL = `https://viacep.com.br/ws/${zipcode.replace('-', '')}/json/`
     try {
         fetch(baseURL, {
