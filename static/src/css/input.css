@@ -10,6 +10,7 @@
 @import "components/modal.css";
 @import "components/card.css";
 @import "components/footer.css";
+@import "components/pagination.css";
 
 @tailwind base;
 @tailwind components;
