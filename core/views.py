@@ -4,7 +4,8 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm
-from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel, QualificationModel, AddressModel
+from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel, QualificationModel, AddressModel, \
+    ExperienceModel
 
 
 # MARK: - SEARCH JOBS
@@ -25,7 +26,7 @@ class SearchView(LoginRequiredMixin, ListView):
         return data
 
 
-# MARK: - PROFILE
+# MARK: - REGISTRATION USER
 class UserRegistrationView(FormView):
     form_class = UserForm
     template_name = 'registration/registration.html'
@@ -38,7 +39,7 @@ class UserRegistrationView(FormView):
 
         return redirect(self.success_url)
 
-
+# MARK: - PROFILE
 class MyProfileView(LoginRequiredMixin, FormView):
     model = UserModel
     template_name = 'candidates/profile/index.html'
@@ -104,6 +105,7 @@ class MyCurriculumView(LoginRequiredMixin, TemplateView):
     template_name = 'candidates/profile/index.html'
 
 
+# MARK: - PROFILE
 class MyProfileDetailView(LoginRequiredMixin, TemplateView):
     template_name = 'candidates/profile/profile.html'
     success_url = 'core:profile'
@@ -134,6 +136,7 @@ class MyProfileDetailView(LoginRequiredMixin, TemplateView):
         return self.get(request, *args, **kwargs)
 
 
+# MARK: - ADDRESS
 class MyAddressDetailView(LoginRequiredMixin, DetailView):
     model = AddressModel
     template_name = 'candidates/profile/address.html'
@@ -156,20 +159,34 @@ class MyAddressDetailView(LoginRequiredMixin, DetailView):
         return self.get(*args, **kwargs)
 
 
-class MyQualificationsDetailView(LoginRequiredMixin, ListView):
+# MARK: - QUALIFICATIONS
+class MyQualificationsListView(LoginRequiredMixin, ListView):
     model = QualificationModel
-    template_name = 'candidates/profile/qualifications.html'
+    template_name = 'candidates/profile/qualifications/list.html'
     context_object_name = 'qualifications'
 
 
-class MyExperienceDetailView(LoginRequiredMixin, ListView):
-    model = ApplicationModel
-    template_name = 'candidates/profile/experiences.html'
+class MyQualificationsDetailView(LoginRequiredMixin, DetailView):
+    model = QualificationModel
+    template_name = 'candidates/profile/qualifications/detail.html'
+    context_object_name = 'qualifications'
+
+
+# MARK: - EXPERIENCES
+class MyExperienceListView(LoginRequiredMixin, ListView):
+    model = ExperienceModel
+    template_name = 'candidates/profile/experiences/list.html'
     context_object_name = 'experiences'
 
 
+class MyExperienceDetailView(LoginRequiredMixin, DetailView):
+    model = ApplicationModel
+    template_name = 'candidates/profile/experiences/detail.html'
+    context_object_name = 'experience'
+
+
 # MARK: - APPLICATIONS
-class MyApplicationsView(LoginRequiredMixin, ListView):
+class MyApplicationsListView(LoginRequiredMixin, ListView):
     model = ApplicationModel
     context_object_name = 'applications'
     template_name = 'candidates/applications/list.html'
