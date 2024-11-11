@@ -36,3 +36,9 @@
     }
 }
 
+@layer base {
+    body, html {
+        @apply bg-gray-100
+    }
+}
+

@@ -1035,6 +1035,11 @@ input:checked + .toggle-bg {
   border-color: #1C64F2;
 }
 
+body, html {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
 .container {
   width: 100%;
 }

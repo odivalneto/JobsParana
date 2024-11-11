@@ -123,6 +123,12 @@
                             
                             </span>
 
+                            <h3 class="stepper__item-title">Conclusão</h3>
+                            <p class="text-sm">Poxa <b>{{ request.user.full_name }}</b>, dessa vez não foi, mas queremos
+                                te ver novamente! Continue se
+                                candidatando, seu talento é
+                                incrível e certamente encontrará a oportunidade certa em breve.</p>
+
                         {% else %}
 
                             <span class="stepper__item stepper__item-default" id="step-4">
@@ -134,10 +140,11 @@
                             
                             </span>
 
+                            <h3 class="stepper__item-title">Conclusão</h3>
+                            <p class="text-sm">Aguarde enquanto avaliamos todo processo.</p>
+
                         {% endif %}
 
-                        <h3 class="stepper__item-title">Conclusão</h3>
-                        <p class="text-sm">Aguarde enquanto avaliamos todo processo seletivo</p>
 
                     </li>
 
@@ -158,7 +165,7 @@
 
     </section>
 
-    {% alert_modal id_modal='remove_modal' message='Deseja cancelar sua candidatura?' action_id='remove_action' %}
+    {% alert_modal id_modal='remove_modal' message='Deseja remover sua candidatura?' action_id='remove_action' %}
 
 {% endblock %}
 
