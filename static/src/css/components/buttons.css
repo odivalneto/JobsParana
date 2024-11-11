@@ -12,7 +12,33 @@
         @apply bg-gray-200 w-full text-white p-2 rounded-lg cursor-not-allowed
     }
 
-    /*BUTTON MODAL*/
+}
+
+/*BUTTON SEARCH*/
+@layer components {
+    .btn__search-primary {
+        @apply text-white absolute end-2.5 bottom-2.5 bg-primary-100 hover:bg-primary-hover font-medium rounded-lg text-sm px-4 py-2
+    }
+}
+
+/*FAB BUTTON*/
+@layer components {
+    .btn__fab {
+        @apply right-5 bottom-20 fixed flex w-14 h-14 border bg-primary-100 rounded-full shadow-md
+    }
+
+    .btn__fab:hover {
+        @apply hover:bg-primary-hover transition duration-300
+    }
+
+    .btn__fab-icon {
+        @apply m-auto w-8 h-8 text-white
+    }
+}
+
+/*BUTTON MODAL*/
+@layer components {
+
     .btn-primary-modal {
         @apply px-5 py-2.5 text-white bg-primary-100 font-medium rounded-lg text-sm items-center
     }
@@ -27,13 +53,5 @@
 
     .btn-secondary-modal:hover {
         @apply hover:bg-gray-100
-    }
-
-
-}
-
-@layer components {
-    .btn__search-primary {
-        @apply text-white absolute end-2.5 bottom-2.5 bg-primary-100 hover:bg-primary-hover font-medium rounded-lg text-sm px-4 py-2
     }
 }
