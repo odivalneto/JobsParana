@@ -228,7 +228,7 @@ var _default = function _default(XRegExp) {
    *   `name`, `alias`, `isBmpLast`, `inverseOf`, `bmp`, and `astral`. All but `name` are
    *   optional, although one of `bmp` or `astral` is required (unless `inverseOf` is set). If
    *   `astral` is absent, the `bmp` data is used for BMP and astral modes. If `bmp` is absent,
-   *   the name errors in BMP mode but works in astral mode. If both `bmp` and `astral` are
+   *   the name errors in BMP mode but works.json in astral mode. If both `bmp` and `astral` are
    *   provided, the `bmp` data only is used in BMP mode, and the combination of `bmp` and
    *   `astral` data is used in astral mode. `isBmpLast` is needed when a token matches orphan
    *   high surrogates *and* uses surrogate pairs to match astral code points. The `bmp` and
@@ -987,7 +987,7 @@ function setNamespacing(on) {
 /**
  * Creates an extended regular expression object for matching text with a pattern. Differs from a
  * native regular expression in that additional syntax and flags are supported. The returned object
- * is in fact a native `RegExp` and works with all native methods.
+ * is in fact a native `RegExp` and works.json with all native methods.
  *
  * @class XRegExp
  * @constructor
@@ -1002,7 +1002,7 @@ function setNamespacing(on) {
  *     - `y` - sticky (Firefox 3+, ES6)
  *   Additional XRegExp flags:
  *     - `n` - named capture only
- *     - `s` - dot matches all (aka singleline) - works even when not natively supported
+ *     - `s` - dot matches all (aka singleline) - works.json even when not natively supported
  *     - `x` - free-spacing and line comments (aka extended)
  *     - `A` - 21-bit Unicode properties (aka astral) - requires the Unicode Base addon
  *   Flags cannot be provided when constructing one `RegExp` from another.
@@ -1478,7 +1478,7 @@ XRegExp.isInstalled = function (feature) {
   return !!features[feature];
 };
 /**
- * Returns `true` if an object is a regex; `false` if it isn't. This works correctly for regexes
+ * Returns `true` if an object is a regex; `false` if it isn't. This works.json correctly for regexes
  * created in another frame, when `instanceof` and `constructor` checks would fail.
  *
  * @memberOf XRegExp
@@ -2243,7 +2243,7 @@ fixed.split = function (separator, limit) {
   // If negative number: pow(2,32) - floor(abs(limit))
   // If other: Type-convert, then use the above rules
   // This line fails in very strange ways for some values of `limit` in Opera 10.5-10.63, unless
-  // Opera Dragonfly is open (go figure). It works in at least Opera 9.5-10.1 and 11+
+  // Opera Dragonfly is open (go figure). It works.json in at least Opera 9.5-10.1 and 11+
 
   limit = (limit === undefined ? -1 : limit) >>> 0;
   (0, _forEach["default"])(XRegExp).call(XRegExp, str, separator, function (match) {

@@ -135,25 +135,25 @@ class ExperienceModel(models.Model):
         return self.company
 
     def get_time_experience(self):
-        time_experience = self.end_date - self.start_date
+        days_experiences = self.end_date - self.start_date
 
-        year = time_experience.days // 365
-        month = (time_experience.days // 30) % 12
+        year = days_experiences.days // 365
+        month = (days_experiences.days // 30) % 12
 
-        result_year = ''
-        result_month = ''
+        date_year = ''
+        date_month = ''
 
-        if year > 1:
-            result_year += f'{year} anos'
-        elif year == 1:
-            result_year += f'{year} ano'
+        if year == 1:
+            date_year += f'{year} ano'
+        elif year > 1:
+            date_year += f'{year} anos'
 
-        if month > 1:
-            result_month += f'{month} meses'
-        elif month == 1:
-            result_month += f'{month} mês'
+        if month == 1:
+            date_month += f'{month} mês'
+        elif month > 1:
+            date_month += f'{month} meses'
 
-        return f'{result_year} {result_month}'
+        return f'{date_year} {date_month}'
 
 
 class QualificationModel(models.Model):

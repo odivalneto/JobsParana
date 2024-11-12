@@ -1,0 +1,111 @@
+{
+  "profissoes": [
+    {
+      "categoria": "Saúde",
+      "profissoes": [
+        "Médico",
+        "Enfermeiro",
+        "Fisioterapeuta",
+        "Psicólogo",
+        "Dentista",
+        "Farmacêutico",
+        "Nutricionista"
+      ]
+    },
+    {
+      "categoria": "Tecnologia",
+      "profissoes": [
+        "Desenvolvedor de Software",
+        "Engenheiro de Dados",
+        "Analista de Sistemas",
+        "Cientista de Dados",
+        "Especialista em Cibersegurança",
+        "Designer de UX/UI",
+        "Administrador de Redes"
+      ]
+    },
+    {
+      "categoria": "Engenharia",
+      "profissoes": [
+        "Engenheiro Civil",
+        "Engenheiro Elétrico",
+        "Engenheiro Mecânico",
+        "Engenheiro de Produção",
+        "Engenheiro Químico",
+        "Engenheiro Ambiental",
+        "Engenheiro de Petróleo"
+      ]
+    },
+    {
+      "categoria": "Educação",
+      "profissoes": [
+        "Professor de Educação Infantil",
+        "Professor de Ensino Fundamental",
+        "Professor Universitário",
+        "Orientador Educacional",
+        "Instrutor de Treinamento",
+        "Pedagogo"
+      ]
+    },
+    {
+      "categoria": "Artes e Design",
+      "profissoes": [
+        "Artista Plástico",
+        "Designer Gráfico",
+        "Ilustrador",
+        "Fotógrafo",
+        "Diretor de Arte",
+        "Escultor",
+        "Maquiador"
+      ]
+    },
+    {
+      "categoria": "Administração e Negócios",
+      "profissoes": [
+        "Administrador",
+        "Analista Financeiro",
+        "Contador",
+        "Consultor de Negócios",
+        "Gerente de Recursos Humanos",
+        "Marketing Digital",
+        "Comprador"
+      ]
+    },
+    {
+      "categoria": "Ciências e Pesquisa",
+      "profissoes": [
+        "Biólogo",
+        "Físico",
+        "Químico",
+        "Antropólogo",
+        "Pesquisador",
+        "Astrônomo",
+        "Oceanógrafo"
+      ]
+    },
+    {
+      "categoria": "Serviços Públicos e Segurança",
+      "profissoes": [
+        "Policial",
+        "Bombeiro",
+        "Soldado",
+        "Segurança",
+        "Guarda Municipal",
+        "Investigador",
+        "Agente Penitenciário"
+      ]
+    },
+    {
+      "categoria": "Hospitalidade e Turismo",
+      "profissoes": [
+        "Guia Turístico",
+        "Recepcionista de Hotel",
+        "Chefe de Cozinha",
+        "Bartender",
+        "Comissário de Bordo",
+        "Agente de Viagens",
+        "Sommelier"
+      ]
+    }
+  ]
+}

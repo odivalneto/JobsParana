@@ -34,7 +34,7 @@ class ApplicationAdmin(admin.ModelAdmin):
 
 @admin.register(JobModel)
 class JobModelAdmin(admin.ModelAdmin):
-    list_display = ['title','registration_date', 'is_available']
+    list_display = ['title','registration_date', 'is_available', 'count_applications']
     pass
 
 
@@ -56,4 +56,6 @@ class QualificationModelAdmin(admin.ModelAdmin):
 
 @admin.register(ExperienceModel)
 class ExperiencesModelAdmin(admin.ModelAdmin):
+    list_display = ['curriculum', 'position']
+    list_filter = ['curriculum', 'position']
     pass

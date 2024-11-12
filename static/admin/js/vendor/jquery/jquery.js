@@ -1325,7 +1325,7 @@ function setDocument( node ) {
 
 		// Support: IE 11+, Edge 15 - 18+
 		// IE 11/Edge don't find elements on a `[name='']` query in some cases.
-		// Adding a temporary attribute to the document before the selection works
+		// Adding a temporary attribute to the document before the selection works.json
 		// around the issue.
 		// Interestingly, IE 10 & older don't seem to have the issue.
 		input = document.createElement( "input" );
@@ -1975,7 +1975,7 @@ Expr = jQuery.expr = {
 			// https://www.w3.org/TR/selectors/#empty-pseudo
 			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
 			//   but not by others (comment: 8; processing instruction: 7; etc.)
-			// nodeType < 6 works because attributes (2) do not appear as children
+			// nodeType < 6 works.json because attributes (2) do not appear as children
 			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
 				if ( elem.nodeType < 6 ) {
 					return false;
@@ -2598,7 +2598,7 @@ function compile( selector, match /* Internal Use Only */ ) {
 }
 
 /**
- * A low-level selection function that works with jQuery's compiled
+ * A low-level selection function that works.json with jQuery's compiled
  *  selector functions
  * @param {String|Function} selector A selector or a pre-compiled
  *  selector function built with jQuery selector compile
@@ -5695,7 +5695,7 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 } );
 
 // Create mouseenter/leave events using mouseover/out and event-time checks
-// so that event delegation works in jQuery.
+// so that event delegation works.json in jQuery.
 // Do the same for pointerenter/pointerleave and pointerover/pointerout
 //
 // Support: Safari 7 only
@@ -8814,7 +8814,7 @@ jQuery.fn.extend( {
 		} ).filter( function() {
 			var type = this.type;
 
-			// Use .is( ":disabled" ) so that fieldset[disabled] works
+			// Use .is( ":disabled" ) so that fieldset[disabled] works.json
 			return this.name && !jQuery( this ).is( ":disabled" ) &&
 				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
 				( this.checked || !rcheckableType.test( type ) );
@@ -9707,7 +9707,7 @@ jQuery._evalUrl = function( url, options, doc ) {
 
 		// Only evaluate the response if it is successful (gh-4126)
 		// dataFilter is not invoked for failure responses, so using it instead
-		// of the default converter is kludgy but it works.
+		// of the default converter is kludgy but it works.json.
 		converters: {
 			"text script": function() {}
 		},

@@ -6,11 +6,9 @@
 
     {% fab_button modal='modal_experience' %}
 
-
-
     <section class="grid md:grid-cols-4 gap-2">
-        {% for  experience in experiences %}
-            <div class="box">
+        {% for experience in experiences %}
+            <a class="box" href="{% url 'core:curriculum_experiences_detail' experience.pk %}">
 
                 <div class="box__content">
 
@@ -19,20 +17,20 @@
                     </div>
 
                     <div class="box__description">
-                    
+
                         <span class="text-gray-900 text-sm">{{ experience.company }}</span>
-                    
+
                         {% if experience.is_actual %}
                             <span>Trabalhando atualmente</span>
                         {% else %}
                             <span>Experiência - {{ experience.get_time_experience }}</span>
                         {% endif %}
-                    
+
                     </div>
 
                 </div>
 
-            </div>
+            </a>
 
         {% empty %}
             {% empty_list message='Adicione suas experiências de trabalho' title='Nenhuma Experiência' %}
@@ -42,9 +40,9 @@
 
 
 
-    <div class="main__backdrop" id="modal_experience" tabindex="-1">
+    <div class="main__backdrop" id="modal_experience" tabindex="-1" data-modal-placement="top-center">
 
-        <div class="modal__container">
+        <div class="modal__form">
 
             <button type="button" class="modal__btn-close" data-modal-hide="modal_experience">
 
@@ -58,14 +56,18 @@
 
             </button>
 
-            <div class="p-6">
-                <form class="grid md:grid-cols-2 gap-2" method="post">{% csrf_token %}
+            <div class="modal__content">
+                
+                <form class="grid md:grid-cols-2 gap-2" method="post" id="add_experience">{% csrf_token %}
                     {% form_flowbite form %}
-                    <button type="submit" class="btn-primary">Adicionar</button>
                 </form>
+                
+                <div class="grid">
+                    <button type="submit" class="btn-primary-modal" form="add_experience">Adicionar</button>
+                </div>
 
             </div>
-
+            
         </div>
 
     </div>

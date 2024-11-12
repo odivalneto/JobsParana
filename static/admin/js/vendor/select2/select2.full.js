@@ -16,7 +16,7 @@
         // require('jQuery') returns a factory that requires window to
         // build a jQuery instance, we normalize how we use modules
         // that require this pattern but the window provided is a noop
-        // if it's defined (how jquery works)
+        // if it's defined (how jquery works.json)
         if (typeof window !== 'undefined') {
           jQuery = require('jquery');
         }
@@ -431,7 +431,7 @@ var requirejs, require, define;
             //do, and latest browsers "upgrade" to 4 if lower value is used:
             //http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#dom-windowtimers-settimeout:
             //If want a value immediately, use require('id') instead -- something
-            //that works in almond on the global level, but not guaranteed and
+            //that works.json in almond on the global level, but not guaranteed and
             //unlikely to work in other AMD implementations.
             setTimeout(function () {
                 main(undef, deps, callback, relName);
@@ -3637,7 +3637,7 @@ S2.define('select2/data/ajax',[
         callback(results);
       }, function () {
         // Attempt to detect if a request was aborted
-        // Only works if the transport exposes a status property
+        // Only works.json if the transport exposes a status property
         if ('status' in $request &&
             ($request.status === 0 || $request.status === '0')) {
           return;

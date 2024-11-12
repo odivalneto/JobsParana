@@ -1,11 +1,15 @@
 /*MODAL*/
 @layer components {
     .modal {
-        @apply relative p-4 w-full max-w-sm max-h-full
+        @apply relative p-2 w-full max-w-sm bg-white rounded-xl shadow
+    }
+
+    .modal__form{
+        @apply relative max-w-screen-md bg-white rounded-xl shadow
     }
 
     .modal__container {
-        @apply relative bg-white rounded-xl shadow
+        @apply relative
     }
 
     .modal__content {
