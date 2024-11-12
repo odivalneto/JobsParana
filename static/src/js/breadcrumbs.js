@@ -2,7 +2,7 @@ function generateBreadcrumbs() {
     const breadcrumbsContainer = document.getElementById("breadcrumbs");
     const urlSegments = window.location.pathname.split('/').filter(segment => segment);
 
-    let breadcrumbsHTML = '<a href="/">Início</a>'; // Link para a página inicial
+    let breadcrumbsHTML = '<a href="/">Início</a>';
     let path = '';
 
     urlSegments.forEach((segment, index) => {

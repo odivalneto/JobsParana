@@ -44,4 +44,8 @@
     .box__divider {
         @apply border-t-[1px] border-gray-200 w-full py-2
     }
+
+    .box__description {
+        @apply grid gap-0.5 text-sm text-gray-400
+    }
 }

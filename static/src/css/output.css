@@ -1299,6 +1299,15 @@ body, html {
   padding-bottom: 0.5rem;
 }
 
+.box__description {
+  display: grid;
+  gap: 0.125rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
 .input-primary {
   display: block;
   width: 100%;
@@ -2022,7 +2031,7 @@ body, html {
   left: 0px;
   z-index: 50;
   display: none;
-  height: calc(100% - 1rem);
+  height: calc(100% - 0.1rem);
   max-height: 100%;
   width: 100%;
   align-items: center;
@@ -2424,8 +2433,8 @@ body, html {
   height: 70px;
 }
 
-.h-\[calc\(100\%-1rem\)\] {
-  height: calc(100% - 1rem);
+.h-\[calc\(100\%-0\.1rem\)\] {
+  height: calc(100% - 0.1rem);
 }
 
 .h-full {
@@ -2766,6 +2775,10 @@ body, html {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-y-2 {
+  row-gap: 0.5rem;
 }
 
 .-space-x-px > :not([hidden]) ~ :not([hidden]) {

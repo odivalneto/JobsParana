@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView, FormView
-from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm
+from core.forms import UserForm, CurriculumForm, ProfileForm, ApplicationForm, AddressForm, ExperienceForm
 from core.models import JobModel, CurriculumModel, UserModel, ApplicationModel, QualificationModel, AddressModel, \
     ExperienceModel
 
@@ -38,6 +38,7 @@ class UserRegistrationView(FormView):
             form.save()
 
         return redirect(self.success_url)
+
 
 # MARK: - PROFILE
 class MyProfileView(LoginRequiredMixin, FormView):
@@ -177,6 +178,18 @@ class MyExperienceListView(LoginRequiredMixin, ListView):
     model = ExperienceModel
     template_name = 'candidates/profile/experiences/list.html'
     context_object_name = 'experiences'
+    extra_context = {'form': ExperienceForm()}
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(curriculum__user=self.request.user).order_by('end_date')
+        return queryset
+
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.method == 'POST':
+            form = ExperienceForm(request.POST)
+            if form.is_valid():
+                form.save(curriculum=CurriculumModel.objects.get_or_create(user_id=self.request.user)[0])
+        return redirect('core:curriculum_experiences', request.user.pk)
 
 
 class MyExperienceDetailView(LoginRequiredMixin, DetailView):

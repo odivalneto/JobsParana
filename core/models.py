@@ -1,5 +1,4 @@
 import uuid
-
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -59,8 +58,9 @@ class UserModel(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.full_name
 
+
 class AddressModel(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='user_addresses')
     zipcode = models.CharField(_('Zip Code'), max_length=30, default='')
     address = models.CharField(_('Address'), max_length=255)
@@ -98,7 +98,7 @@ class CurriculumModel(models.Model):
         'Doutorado': 'Doutorado'
     }
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='user')
     about = models.TextField(blank=True)
     education = models.CharField(_('Education'), max_length=50, choices=type_education, blank=True)
@@ -114,15 +114,17 @@ class CurriculumModel(models.Model):
 
 
 class ExperienceModel(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     curriculum = models.ForeignKey('CurriculumModel', on_delete=models.CASCADE, related_name='experiences')
     company = models.CharField(max_length=255)
     position = models.CharField(max_length=255)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
     is_actual = models.BooleanField(default=False)
     address = models.CharField(max_length=255)
     responsibilities = models.TextField()
+
+    REQUIRED_FIELDS = ['curriculum', 'company', 'position', 'start_date']
 
     class Meta:
         ordering = ['company']
@@ -131,6 +133,27 @@ class ExperienceModel(models.Model):
 
     def __str__(self):
         return self.company
+
+    def get_time_experience(self):
+        time_experience = self.end_date - self.start_date
+
+        year = time_experience.days // 365
+        month = (time_experience.days // 30) % 12
+
+        result_year = ''
+        result_month = ''
+
+        if year > 1:
+            result_year += f'{year} anos'
+        elif year == 1:
+            result_year += f'{year} ano'
+
+        if month > 1:
+            result_month += f'{month} meses'
+        elif month == 1:
+            result_month += f'{month} mês'
+
+        return f'{result_year} {result_month}'
 
 
 class QualificationModel(models.Model):
@@ -165,7 +188,7 @@ class LanguageModel(models.Model):
 
 
 class CompanyModel(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     name_company = models.CharField(_('Nome Company'), max_length=255)
     address = models.CharField(_('Address'), max_length=255)
     district = models.CharField(_('District'), max_length=255)
@@ -185,7 +208,7 @@ class CompanyModel(models.Model):
 
 
 class JobModel(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     company = models.ForeignKey('CompanyModel', on_delete=models.CASCADE, related_name='company')
     title = models.CharField(_('Title'), max_length=255)
     id_job = models.CharField(_('ID Job'), max_length=255, default='')
@@ -214,16 +237,15 @@ class JobModel(models.Model):
 
 
 class ApplicationModel(models.Model):
-
     status_application = {
-        'Confirmada' : 'Confirmada',
-        'Em Revisão' : 'Em Revisão',
-        'Entrevista' : 'Entrevista',
-        'Selecionada' : 'Selecionada',
-        'Não Selecionada' : 'Não Selecionada',
+        'Confirmada': 'Confirmada',
+        'Em Revisão': 'Em Revisão',
+        'Entrevista': 'Entrevista',
+        'Selecionada': 'Selecionada',
+        'Não Selecionada': 'Não Selecionada',
     }
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     job = models.ForeignKey('JobModel', on_delete=models.CASCADE, related_name='job_applications')
     curriculum = models.ForeignKey('CurriculumModel', on_delete=models.CASCADE, related_name='curriculum_applications')
     application_date = models.DateField(_('Application Date'), auto_now_add=True)

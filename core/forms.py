@@ -57,7 +57,6 @@ class AddressForm(forms.ModelForm):
         fields = ['zipcode', 'address', 'number', 'complement', 'region', 'city', 'state', 'country']
 
 
-
 class JobsForm(forms.ModelForm):
     class Meta:
         model = JobModel
@@ -115,9 +114,28 @@ class LanguageForm(forms.ModelForm):
 
 
 class ExperienceForm(forms.ModelForm):
+    company = forms.CharField(label='Empresa')
+    position = forms.CharField(label='Cargo')
+    start_date = forms.DateField(label='Início', required=True)
+    end_date = forms.DateField(label='Saída', required=False)
+    is_actual = forms.BooleanField(label='Trabalho Atual?', required=False)
+    address = forms.CharField(label='Local')
+    responsibilities = forms.CharField(label='Funções exercidas', required=False, widget=forms.Textarea)
+
     class Meta:
         model = ExperienceModel
-        fields = '__all__'
+        fields = ['company', 'position', 'start_date', 'end_date', 'is_actual', 'address', 'responsibilities']
+
+    def save(self, commit=True, **kwargs):
+        self.instance.curriculum = kwargs['curriculum']
+        self.instance.company = self.cleaned_data['company']
+        self.instance.position = self.cleaned_data['position']
+        self.instance.start_date = self.cleaned_data['start_date']
+        self.instance.end_date = self.cleaned_data['end_date']
+        self.instance.is_actual = self.cleaned_data['is_actual']
+        self.instance.responsibilities = self.cleaned_data['responsibilities']
+        self.instance.save()
+        return self.instance
 
 
 class QualificationForm(forms.ModelForm):
