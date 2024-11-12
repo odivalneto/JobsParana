@@ -19,12 +19,15 @@
                     </div>
 
                     <div class="box__description">
+                    
                         <span class="text-gray-900 text-sm">{{ experience.company }}</span>
+                    
                         {% if experience.is_actual %}
                             <span>Trabalhando atualmente</span>
                         {% else %}
                             <span>Experiência - {{ experience.get_time_experience }}</span>
                         {% endif %}
+                    
                     </div>
 
                 </div>

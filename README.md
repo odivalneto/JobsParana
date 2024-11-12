@@ -24,10 +24,10 @@ Sistema de cadastramento e divulgação para vagas de trabalhos do estado do Par
 - [x] Criação de Usuário
 - [x] Listagem de Vagas
 - [x] Detalhe da Vaga
-- [ ] Cadastro de Currículo (Em Desenvolvimento)
-- [ ] Atualização de Perfil
+- [x] Cadastro de Currículo
+- [x] Atualização de Perfil
 - [x] Listagem de Candidaturas
-- [ ] Landing Page
+- [ ] Landing Page (Em Desenvolvimento)
 - [ ] Api
 
 
