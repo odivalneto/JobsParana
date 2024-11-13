@@ -13,7 +13,7 @@
     }
 
     .modal__content {
-        @apply p-4 grid gap-2
+        @apply p-4 grid gap-4
     }
 
     .modal__title {

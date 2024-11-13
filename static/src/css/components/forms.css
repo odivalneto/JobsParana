@@ -1,14 +1,14 @@
 /*DEFAULT INPUT FORMS*/
 @layer components {
     .input-primary {
-        @apply bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5
+        @apply bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block p-2.5
     }
 
     .input-primary:focus {
         @apply focus:ring-primary-100 border-primary-100 transition duration-200
     }
 
-    .input-primary:not(:focus){
+    .input-primary:not(:focus) {
         @apply border-gray-300 transition duration-200
     }
 
@@ -17,7 +17,7 @@
     }
 
     .label-input {
-        @apply block text-sm font-medium text-gray-900 dark:text-white
+        @apply block text-sm font-medium text-gray-900
     }
 
 }
@@ -36,7 +36,7 @@
         @apply focus:ring-primary-100 border-primary-100 transition duration-200
     }
 
-    .input__search:not(:focus){
+    .input__search:not(:focus) {
         @apply border-gray-300 transition duration-200
     }
 
@@ -54,5 +54,27 @@
 
     .input__search-icon {
         @apply w-4 h-4 text-gray-400
+    }
+}
+
+@layer components {
+    .form__col-2 {
+        @apply grid md:grid-cols-2 gap-2
+    }
+
+    .form__col-3 {
+        @apply grid md:grid-cols-3 gap-2
+    }
+}
+
+@layer components {
+    .input__checkbox {
+        @apply text-primary-100 bg-gray-100 border-gray-300 rounded
+    }
+    .input__checkbox:focus {
+        @apply focus:ring-primary-100 focus:border-primary-100 transition duration-200
+    }
+    .input__checkbox-label {
+        @apply ms-2 block text-sm font-medium text-gray-900
     }
 }

@@ -4,9 +4,8 @@
 
 {% block content %}
 
-    {% fab_button modal='modal_experience' %}
+    <section class="grid md:grid-cols-4 gap-4">
 
-    <section class="grid md:grid-cols-4 gap-2">
         {% for experience in experiences %}
             <a class="box" href="{% url 'core:curriculum_experiences_detail' experience.pk %}">
 
@@ -38,36 +37,78 @@
 
     </section>
 
-
+    {% fab_button modal='modal_experience' %}
 
     <div class="main__backdrop" id="modal_experience" tabindex="-1" data-modal-placement="top-center">
 
         <div class="modal__form">
 
-            <button type="button" class="modal__btn-close" data-modal-hide="modal_experience">
+            <div class="py-2">
+                <button type="button" class="modal__btn-close" data-modal-hide="modal_experience">
 
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                     viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
-                </svg>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+                    </svg>
 
-                <span class="sr-only">Close modal</span>
+                    <span class="sr-only">Close modal</span>
 
-            </button>
+                </button>
+            </div>
 
             <div class="modal__content">
-                
-                <form class="grid md:grid-cols-2 gap-2" method="post" id="add_experience">{% csrf_token %}
-                    {% form_flowbite form %}
+
+                <form class="grid gap-2" method="post" id="add_experience">{% csrf_token %}
+
+                    <div class="grid md:grid-cols-2 gap-2">
+                        <div class="grid gap-0.5">
+                            {{ form.company | label_css:'label-input' | cut:':' | safe }}
+                            {{ form.company | input_css:'input-primary' }}
+                        </div>
+
+                        <div class="grid gap-0.5">
+                            {{ form.position | label_css:'label-input' | cut:':' | safe }}
+                            {{ form.position | input_css:'input-primary' }}
+                        </div>
+
+                        <div class="grid gap-0.5">
+                            {{ form.start_date | label_css:'label-input' | cut:':' | safe }}
+                            {{ form.start_date | input_css:'input-primary' }}
+                        </div>
+
+                        <div class="grid gap-0.5">
+                            {{ form.end_date | label_css:'label-input' | cut:':' | safe }}
+                            {{ form.end_date | input_css:'input-primary' }}
+                        </div>
+
+                        <div class="grid gap-0.5">
+                            {{ form.address | label_css:'label-input' | cut:':' | safe }}
+                            {{ form.address | input_css:'input-primary' }}
+                        </div>
+
+                        <div class="flex items-center py-4">
+                            {{ form.is_actual | input_css:'input__checkbox' }}
+                            {{ form.is_actual | label_css:'input__checkbox-label' | cut:':' | safe }}
+                        </div>
+
+                    </div>
+
+                    <div class="grid gap-0.5">
+                        {{ form.responsibilities | label_css:'label-input' | cut:':' | safe }}
+                        {{ form.responsibilities | input_css:'input-primary' }}
+                    </div>
+
                 </form>
-                
-                <div class="grid">
+
+                <div class="grid grid-cols-2 gap-4">
+                    <button type="submit" class="btn-secondary-modal" data-modal-hide="modal_experience">Cancelar
+                    </button>
                     <button type="submit" class="btn-primary-modal" form="add_experience">Adicionar</button>
                 </div>
 
             </div>
-            
+
         </div>
 
     </div>

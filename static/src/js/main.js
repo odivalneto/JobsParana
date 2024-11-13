@@ -2,6 +2,18 @@ import {ApiService} from "./services.js";
 
 const apiService = new ApiService("localhost:8000")
 
+const is_actual_work = document.querySelector("#id_is_actual");
+
+if (mask_end_date && is_actual_work) {
+    is_actual_work.addEventListener("change", (e) => {
+
+        mask_end_date.value = null;
+        mask_end_date.disabled = is_actual_work.checked;
+        mask_end_date.required = !is_actual_work.checked;
+
+    })
+}
+
 // BUTTONS ACTIONS
 const remove_action = document.querySelector('#remove_action');
 const confirm_action = document.querySelector('#confirm_action')

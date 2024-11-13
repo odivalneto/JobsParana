@@ -115,16 +115,19 @@ class LanguageForm(forms.ModelForm):
 
 class ExperienceForm(forms.ModelForm):
     company = forms.CharField(label='Empresa')
-    position = forms.CharField(label='Cargo')
-    start_date = forms.DateField(label='Início', required=True)
-    end_date = forms.DateField(label='Saída', required=False)
-    is_actual = forms.BooleanField(label='Trabalho Atual?', required=False)
-    address = forms.CharField(label='Local')
-    responsibilities = forms.CharField(label='Funções exercidas', required=False, widget=forms.Textarea)
+    position = forms.CharField(label='Cargo', widget=forms.TextInput(attrs={'placeholder': 'ex. Diretor'}))
+    start_date = forms.DateField(label='Início', required=True,
+                                 widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA', 'maxlength': 10}))
+    end_date = forms.DateField(label='Saída', required=False,
+                               widget=forms.DateInput(attrs={'placeholder': 'DD/MM/AAAA', 'maxlength': 10}))
+    is_actual = forms.BooleanField(label='Trabalho Atual', required=False)
+    address = forms.CharField(label='Local', widget=forms.TextInput(attrs={'placeholder': 'ex. São Paulo, SP'}))
+    responsibilities = forms.CharField(label='Funções', required=False, widget=forms.Textarea(
+        attrs={'placeholder': 'ex. Atendimento ao público, Pacote Office'}))
 
     class Meta:
         model = ExperienceModel
-        fields = ['company', 'position', 'start_date', 'end_date', 'is_actual', 'address', 'responsibilities']
+        fields = ['company', 'position', 'start_date', 'end_date', 'address', 'is_actual', 'responsibilities']
 
     def save(self, commit=True, **kwargs):
         self.instance.curriculum = kwargs['curriculum']

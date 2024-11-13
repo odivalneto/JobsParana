@@ -1,6 +1,8 @@
 const mask_date = document.querySelector('#id_birth_date')
 const mask_phone = document.querySelector('#id_phone_number')
 const mask_zipcode = document.querySelector('#id_zipcode')
+const mask_start_date = document.querySelector('#id_start_date')
+const mask_end_date = document.querySelector('#id_end_date')
 
 // MASK DATE
 function maskDate(input) {
@@ -30,6 +32,16 @@ if (mask_date) {
         maskDate(this);
     }
 }
+
+if (mask_start_date && mask_end_date) {
+    mask_start_date.oninput = function () {
+        maskDate(this);
+    }
+    mask_end_date.oninput = function () {
+        maskDate(this);
+    }
+}
+
 
 if (mask_phone) {
     mask_phone.oninput = function () {
