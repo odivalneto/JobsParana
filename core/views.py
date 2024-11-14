@@ -65,7 +65,8 @@ class JobListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         if self.request.method == 'GET':
-            return super().get_queryset().filter(title__icontains=self.request.GET.get('search', ''), is_available=True)
+            return super().get_queryset().filter(title__icontains=self.request.GET.get('search', ''),
+                                                 is_available=True).order_by('-id')
 
 
 class JobDetailView(LoginRequiredMixin, DetailView):

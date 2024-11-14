@@ -144,4 +144,12 @@ class ExperienceForm(forms.ModelForm):
 class QualificationForm(forms.ModelForm):
     class Meta:
         model = QualificationModel
-        fields = '__all__'
+        fields = ['name', 'institution', 'date']
+
+    def save(self, commit=True, **kwargs):
+        self.instance.curriculum = kwargs['curriculum']
+        self.instance.name = self.cleaned_data['name']
+        self.instance.institution = self.cleaned_data['institution']
+        self.instance.date = self.cleaned_data['date']
+        self.instance.save()
+        return self.instance

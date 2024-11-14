@@ -35,6 +35,7 @@ class ApplicationAdmin(admin.ModelAdmin):
 @admin.register(JobModel)
 class JobModelAdmin(admin.ModelAdmin):
     list_display = ['title','registration_date', 'is_available', 'count_applications']
+    list_editable = ('is_available',)
     pass
 
 
