@@ -4,12 +4,16 @@ const apiService = new ApiService("localhost:8000")
 
 const is_actual_work = document.querySelector("#id_is_actual");
 
-if (mask_end_date && is_actual_work) {
+if (mask_date && is_actual_work) {
     is_actual_work.addEventListener("change", (e) => {
 
-        mask_end_date.value = null;
-        mask_end_date.disabled = is_actual_work.checked;
-        mask_end_date.required = !is_actual_work.checked;
+        mask_date.forEach(e => {
+            if (e.id === 'id_end_date') {
+                e.value = null;
+                e.disabled = is_actual_work.checked;
+                e.required = !is_actual_work.checked;
+            }
+        })
 
     })
 }
