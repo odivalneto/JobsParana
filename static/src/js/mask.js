@@ -22,7 +22,7 @@ function maskPhone(input) {
 // MASK ZIPCODE
 function maskZipcode(input) {
     let value = input.value.replace(/\D/g, "");
-    value = value.replace(/(\d{5})(\d)/, "$1-$2"); //75024-040
+    value = value.replace(/(\d{5})(\d)/, "$1-$2");
     input.value = value;
 }
 
