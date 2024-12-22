@@ -4,7 +4,18 @@
 
 ## Descrição
 
-Sistema de cadastramento e divulgação para vagas de trabalhos do estado do Paraná.
+Este repositório contém o código fonte de um projeto web desenvolvido com o framework Django, criado para alunos que desejam aprender programação e desenvolvimento web, mas não têm condições financeiras de pagar por cursos tradicionais. O projeto faz parte de uma iniciativa educacional voluntária, sem vínculo com entidades governamentais ou privadas, e é disponibilizado de forma totalmente gratuita para todos os interessados.
+
+O objetivo é proporcionar um aprendizado acessível e de qualidade sobre o desenvolvimento de aplicações web usando Django, abordando conceitos fundamentais que formarão a base para a criação de projetos profissionais.
+
+Neste projeto, os alunos terão a oportunidade de:
+
+- Aprender Django do zero, sem custos, com um material prático e completo.
+- Criar e gerenciar bancos de dados usando o Django ORM, desenvolvendo a lógica de backend.
+- Implementar autenticação e permissões de usuários para criar sistemas seguros.
+- Desenvolver páginas dinâmicas, trabalhando com templates e formulários.
+- Criar APIs RESTful (se aplicável), com o uso do Django Rest Framework.
+- Entender as boas práticas de organização e estruturação de projetos Django.
 
 ## Status
 
